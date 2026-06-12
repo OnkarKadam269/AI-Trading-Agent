@@ -24,7 +24,7 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 if not RUNPOD_ENDPOINT_ID or not RUNPOD_API_KEY:
     raise ValueError("Missing RUNPOD credentials in .env")
 
-PAIRS = ['EURUSD', 'GBPUSD', 'XAUUSD', 'USDJPY', 'AUDUSD']
+PAIRS = ['EURUSDm', 'GBPUSDm', 'XAUUSDm', 'USDJPYm', 'AUDUSDm']
 TIMEFRAME = mt5.TIMEFRAME_M15
 LOT_SIZE = 0.01
 
