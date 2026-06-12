@@ -90,11 +90,29 @@ def ask_kronos_brain(features_dict):
     payload = {"input": features_dict}
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=120).json()
-        if 'output' in response and response['output']['status'] == 'success':
+        
+        # If it's taking a long time (cold start), it will return IN_QUEUE or IN_PROGRESS
+        if response.get('status') in ['IN_QUEUE', 'IN_PROGRESS']:
+            job_id = response.get('id')
+            status_url = f"https://api.runpod.ai/v2/{RUNPOD_ENDPOINT_ID}/status/{job_id}"
+            logging.info(f"RunPod cold start detected. Waiting for GPU to wake up (Job: {job_id})...")
+            
+            while True:
+                time.sleep(3)
+                status_res = requests.get(status_url, headers=headers, timeout=20).json()
+                if status_res.get('status') == 'COMPLETED':
+                    return status_res['output']['prediction'], status_res['output']['probability']
+                elif status_res.get('status') in ['FAILED', 'CANCELLED']:
+                    log_error(f"RunPod Job Failed: {status_res}")
+                    return None, None
+        
+        # If it returned immediately
+        if 'output' in response and response.get('status') == 'COMPLETED':
             return response['output']['prediction'], response['output']['probability']
         else:
             log_error(f"RunPod Cloud Error: {response}")
             return None, None
+            
     except Exception as e:
         log_error(f"RunPod Connection Error: {e}")
         return None, None
