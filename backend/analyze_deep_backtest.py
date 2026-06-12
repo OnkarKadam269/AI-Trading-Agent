@@ -36,8 +36,11 @@ def analyze_deep_data():
     # Format: Pair,Dir,Prob,Result,MFE,MAE,RSI,BBW,SMA_Dist
     compressed_trades = []
     
-    # Send up to 10,000 trades (a massive chunk)
-    for t in trades[:10000]:
+    # Filter for interesting trades (Losses, or trades that suffered high drawdowns/reversals)
+    interesting_trades = [t for t in trades if t['result'] == 'LOSS' or t['mfe_pct'] >= 0.10 or t['mae_pct'] >= 0.10]
+    
+    # Send up to 3,500 trades to perfectly fit into the 131,072 token limit
+    for t in interesting_trades[:3500]:
         csv_line = f"{t['pair']},{t['direction']},{t['probability']:.2f},{t['result']},{t['mfe_pct']:.2f},{t['mae_pct']:.2f},{t['rsi']:.1f},{t['bb_width']:.4f},{t['dist_sma20']:.2f}"
         compressed_trades.append(csv_line)
         
