@@ -89,7 +89,7 @@ def ask_kronos_brain(features_dict):
     }
     payload = {"input": features_dict}
     try:
-        response = requests.post(url, headers=headers, json=payload, timeout=20).json()
+        response = requests.post(url, headers=headers, json=payload, timeout=120).json()
         if 'output' in response and response['output']['status'] == 'success':
             return response['output']['prediction'], response['output']['probability']
         else:
