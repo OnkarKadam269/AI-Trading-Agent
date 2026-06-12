@@ -1,19 +1,21 @@
 import os
 import json
 import logging
-import google.generativeai as genai
+from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - KRONOS DEEP ANALYST - %(message)s')
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY")
+
 RESULTS_FILE = os.path.join(os.path.dirname(__file__), 'deep_backtest_results.json')
 RULES_FILE = os.path.join(os.path.dirname(__file__), 'coach_rules.json')
 
 def analyze_deep_data():
-    if not GEMINI_API_KEY:
-        logging.error("GEMINI_API_KEY not found!")
+    if not NVIDIA_API_KEY and not GEMINI_API_KEY:
+        logging.error("No API KEY found! Provide NVIDIA_API_KEY or GEMINI_API_KEY in .env")
         return
 
     if not os.path.exists(RESULTS_FILE):
@@ -40,10 +42,7 @@ def analyze_deep_data():
     high_mfe_losses.sort(key=lambda x: x['mfe_pct'], reverse=True)
     sample_reversals = high_mfe_losses[:50]
 
-    genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel('gemini-2.0-pro-exp-02-05')
-
-    logging.info(f"Sending {len(sample_reversals)} deep MFE reversals to Gemini for Trailing Stop Optimization...")
+    logging.info(f"Sending {len(sample_reversals)} deep MFE reversals to NVIDIA AI for Trailing Stop Optimization...")
 
     prompt = f"""
     You are an elite quantitative trading coach. 
@@ -71,9 +70,22 @@ def analyze_deep_data():
     """
 
     try:
-        response = model.generate_content(prompt)
-        text = response.text.strip()
-        
+        if NVIDIA_API_KEY:
+            client = OpenAI(base_url="https://integrate.api.nvidia.com/v1", api_key=NVIDIA_API_KEY)
+            response = client.chat.completions.create(
+                model="meta/llama-3.1-70b-instruct",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.2,
+                max_tokens=1024
+            )
+            text = response.choices[0].message.content.strip()
+        else:
+            import google.generativeai as genai
+            genai.configure(api_key=GEMINI_API_KEY)
+            model = genai.GenerativeModel('gemini-2.0-pro-exp-02-05')
+            response = model.generate_content(prompt)
+            text = response.text.strip()
+            
         if text.startswith("```json"):
             text = text[7:]
         if text.startswith("```"):

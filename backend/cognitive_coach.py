@@ -1,7 +1,7 @@
 import os
 import json
 import logging
-import google.generativeai as genai
+from openai import OpenAI
 from dotenv import load_dotenv
 
 import sys
@@ -12,12 +12,7 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - KRONOS COACH - %(message)s')
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
-if GEMINI_API_KEY:
-    genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel('gemini-2.0-pro-exp-02-05')
-else:
-    logging.warning("GEMINI_API_KEY not found. Cognitive Coach cannot operate.")
+NVIDIA_API_KEY = os.getenv("NVIDIA_API_KEY")
 
 RULES_FILE = os.path.join(os.path.dirname(__file__), 'coach_rules.json')
 
@@ -28,7 +23,7 @@ def get_recent_closed_trades(limit=50):
     return trades
 
 def analyze_and_update_rules():
-    if not GEMINI_API_KEY:
+    if not NVIDIA_API_KEY and not GEMINI_API_KEY:
         return []
         
     trades = get_recent_closed_trades()
@@ -70,9 +65,23 @@ def analyze_and_update_rules():
     """
     
     try:
-        logging.info("Sending trades to Gemini for Cognitive Autopsy...")
-        response = model.generate_content(prompt)
-        text = response.text.strip()
+        logging.info("Sending trades to AI for Cognitive Autopsy...")
+        
+        if NVIDIA_API_KEY:
+            client = OpenAI(base_url="https://integrate.api.nvidia.com/v1", api_key=NVIDIA_API_KEY)
+            response = client.chat.completions.create(
+                model="meta/llama-3.1-70b-instruct",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.2,
+                max_tokens=1024
+            )
+            text = response.choices[0].message.content.strip()
+        else:
+            import google.generativeai as genai
+            genai.configure(api_key=GEMINI_API_KEY)
+            model = genai.GenerativeModel('gemini-2.0-pro-exp-02-05')
+            response = model.generate_content(prompt)
+            text = response.text.strip()
         
         if text.startswith("```json"):
             text = text[7:]
