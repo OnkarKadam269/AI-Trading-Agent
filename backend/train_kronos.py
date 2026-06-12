@@ -15,10 +15,21 @@ PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "XAUUSD", "USDCHF"]
 TIMEFRAME = mt5.TIMEFRAME_M15
 CANDLES = 10000 # Download last 10,000 candles for training
 
+def get_real_symbol(base_symbol):
+    """Finds the actual symbol name in Exness (handles suffixes like EURUSDm)."""
+    symbols = mt5.symbols_get()
+    if symbols is None: return base_symbol
+    for s in symbols:
+        if base_symbol in s.name:
+            return s.name
+    return base_symbol
+
 def get_data(symbol):
-    rates = mt5.copy_rates_from_pos(symbol, TIMEFRAME, 0, CANDLES)
+    real_symbol = get_real_symbol(symbol)
+    logger.info(f"Detected real symbol: {real_symbol}")
+    rates = mt5.copy_rates_from_pos(real_symbol, TIMEFRAME, 0, CANDLES)
     if rates is None or len(rates) == 0:
-        logger.error(f"Failed to fetch data for {symbol}")
+        logger.error(f"Failed to fetch data for {real_symbol}")
         return pd.DataFrame()
     
     df = pd.DataFrame(rates)
@@ -49,6 +60,7 @@ def add_features(df):
 
 def label_data(df):
     """Labels the data: 1 if price goes UP in the next 5 candles, 0 if DOWN."""
+    if df.empty: return df
     # Look ahead 5 candles (approx 1 hour on M15)
     df['future_close'] = df['close'].shift(-5)
     df.dropna(inplace=True)
@@ -66,13 +78,15 @@ def train_model():
     all_data = pd.DataFrame()
     
     for symbol in PAIRS:
-        logger.info(f"Downloading data for {symbol}...")
+        logger.info(f"Processing {symbol}...")
         df = get_data(symbol)
+        if df.empty:
+            continue
         df = add_features(df)
         df = label_data(df)
         
-        # Add a column for the symbol so the model knows (optional, but we'll stick to pure technicals for now)
-        all_data = pd.concat([all_data, df])
+        if not df.empty:
+            all_data = pd.concat([all_data, df])
         
     mt5.shutdown()
     
