@@ -178,12 +178,12 @@ def generate_4h_report():
     system_errors = []
     trades_taken_this_session = 0
 
-def run_bot():
+def run_agent():
     if not init_mt5():
         return
 
-    logging.info(f"KRONOS AI BOT STARTED! Running Locally for Instant Execution.")
-    send_telegram("🚀 <b>Kronos AI Bot is officially ONLINE!</b>\nRunning Locally for 0.01s Instant Execution.")
+    logging.info(f"KRONOS AI AGENT STARTED! Running Locally for Instant Execution.")
+    send_telegram("🚀 <b>Kronos AI Agent is officially ONLINE!</b>\nRunning Locally for 0.01s Instant Execution.")
     
     last_report_time = datetime.now()
     
@@ -224,4 +224,4 @@ def run_bot():
         time.sleep(900)
 
 if __name__ == "__main__":
-    run_bot()
+    run_agent()
