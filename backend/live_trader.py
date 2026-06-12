@@ -10,6 +10,10 @@ from datetime import datetime, timedelta
 import warnings
 from dotenv import load_dotenv
 import pickle
+import sys
+import json
+sys.path.append(os.path.dirname(__file__))
+from data.database import SessionLocal, Trade
 
 load_dotenv()
 
@@ -105,7 +109,7 @@ def ask_kronos_brain(features_dict):
         log_error(f"Local AI Error: {e}")
         return None, None
 
-def place_trade(symbol, prediction, probability, current_price):
+def place_trade(symbol, prediction, probability, current_price, features_dict):
     global trades_taken_this_session
     positions = mt5.positions_get(symbol=symbol)
     if positions is None:
@@ -150,9 +154,75 @@ def place_trade(symbol, prediction, probability, current_price):
         log_error(f"Order failed for {symbol}: {result.comment}")
     else:
         trades_taken_this_session += 1
+        # Save to Memory System (DB)
+        try:
+            db = SessionLocal()
+            new_trade = Trade(
+                ticket=result.order,
+                symbol=symbol,
+                direction='BUY' if prediction == 1 else 'SELL',
+                open_time=datetime.utcnow(),
+                entry_price=current_price,
+                stop_loss=sl,
+                take_profit_1=tp,
+                take_profit_2=tp,
+                lot_size=LOT_SIZE,
+                confidence=probability,
+                reasoning=features_dict
+            )
+            db.add(new_trade)
+            db.commit()
+            db.close()
+            logging.info(f"Trade successfully recorded into Memory System.")
+        except Exception as e:
+            log_error(f"Failed to save trade to DB: {e}")
+
         msg = f"🟢 <b>KRONOS EXECUTED TRADE</b>\n\n<b>Pair:</b> {symbol}\n<b>Action:</b> {'BUY' if prediction == 1 else 'SELL'}\n<b>Confidence:</b> {probability:.2f}\n<b>Price:</b> {current_price}\n<b>TP/SL:</b> Secured on Broker Server"
         send_telegram(msg)
         logging.info(f"Order SUCCESS for {symbol}! Ticket: {result.order}")
+
+def check_closed_trades():
+    try:
+        db = SessionLocal()
+        # Find trades that haven't been marked as closed in our DB
+        open_trades = db.query(Trade).filter(Trade.exit_price == None).all()
+        if not open_trades:
+            db.close()
+            return
+            
+        # Get history from yesterday to tomorrow
+        from_date = datetime.now() - timedelta(days=2)
+        to_date = datetime.now() + timedelta(days=1)
+        history = mt5.history_deals_get(from_date, to_date)
+        
+        if history is None:
+            db.close()
+            return
+            
+        closed_any = False
+        for trade in open_trades:
+            # Look for a closing deal for this position
+            for deal in history:
+                if deal.position_id == trade.ticket and deal.entry == mt5.DEAL_ENTRY_OUT:
+                    trade.exit_price = deal.price
+                    trade.pnl = deal.profit
+                    trade.close_time = datetime.utcnow()
+                    trade.close_reason = "TP/SL/Manual"
+                    db.commit()
+                    logging.info(f"Memory System Updated: Trade {trade.ticket} Closed. PnL: ${deal.profit:.2f}")
+                    closed_any = True
+                    break
+        db.close()
+        
+        if closed_any:
+            logging.info("A trade just closed! Triggering Cognitive Coach Autopsy...")
+            import cognitive_coach
+            rules = cognitive_coach.analyze_and_update_rules()
+            if rules and len(rules) > 0:
+                send_telegram(f"🧠 <b>COACH UPDATE</b>\n\nThe AI Coach just analyzed the recent closed trades and generated {len(rules)} new Avoidance Rules to prevent future losses!")
+                
+    except Exception as e:
+        log_error(f"Error checking closed trades: {e}")
 
 def generate_4h_report():
     global system_errors, trades_taken_this_session
@@ -208,10 +278,31 @@ def run_agent():
             prediction, probability = ask_kronos_brain(features_dict)
             
             if prediction is not None:
+                # Coach Veto Check
+                vetoed = False
+                veto_reason = ""
+                import cognitive_coach
+                rules = cognitive_coach.load_rules()
+                
+                for rule in rules:
+                    try:
+                        # Safely evaluate the python condition
+                        if eval(rule['condition_python'], {"features": features_dict}):
+                            vetoed = True
+                            veto_reason = rule['reason']
+                            break
+                    except:
+                        pass
+                
+                if vetoed:
+                    logging.warning(f"[{pair}] COACH VETO: {veto_reason}")
+                    send_telegram(f"🛑 <b>COACH VETOED TRADE</b>\n\n<b>Pair:</b> {pair}\n<b>Reason:</b> {veto_reason}\n\n<i>Agent is sitting this one out to protect capital based on historical lessons.</i>")
+                    continue
+                    
                 if probability > 0.60:
-                    place_trade(pair, 1, probability, float(latest_candle['close']))
+                    place_trade(pair, 1, probability, float(latest_candle['close']), features_dict)
                 elif probability < 0.40:
-                    place_trade(pair, 0, probability, float(latest_candle['close']))
+                    place_trade(pair, 0, probability, float(latest_candle['close']), features_dict)
                 else:
                     logging.info(f"[{pair}] Market is too noisy (Prob: {probability:.2f}). Sitting out.")
             
@@ -220,6 +311,9 @@ def run_agent():
             generate_4h_report()
             last_report_time = datetime.now()
             
+        # Update Memory System with any closed trades
+        check_closed_trades()
+
         # Calculate seconds until the exact next 15-minute candle closes
         now = datetime.now()
         next_minute = ((now.minute // 15) + 1) * 15
