@@ -31,32 +31,33 @@ def analyze_deep_data():
 
     # Calculate Summaries to prevent token limit overflows
     total_trades = len(trades)
-    wins = [t for t in trades if t['result'] == 'WIN']
-    losses = [t for t in trades if t['result'] == 'LOSS']
-
-    # Find the MFE of losses (how much profit did we have before the trade reversed and hit SL?)
-    # High MFE on a loss means we should have used a Trailing Stop!
-    high_mfe_losses = [t for t in losses if t['mfe_pct'] > 0.001]
     
-    # Take a sample of the most painful reversals to show Gemini
-    high_mfe_losses.sort(key=lambda x: x['mfe_pct'], reverse=True)
-    sample_reversals = high_mfe_losses[:50]
+    # We compress the data into a dense CSV format to fit all trades into the AI's 128k Context Window
+    # Format: Pair,Dir,Prob,Result,MFE,MAE,RSI,BBW,SMA_Dist
+    compressed_trades = []
+    
+    # Send up to 10,000 trades (a massive chunk)
+    for t in trades[:10000]:
+        csv_line = f"{t['pair']},{t['direction']},{t['probability']:.2f},{t['result']},{t['mfe_pct']:.2f},{t['mae_pct']:.2f},{t['rsi']:.1f},{t['bb_width']:.4f},{t['dist_sma20']:.2f}"
+        compressed_trades.append(csv_line)
+        
+    csv_payload = "\n".join(compressed_trades)
 
-    logging.info(f"Sending {len(sample_reversals)} deep MFE reversals to NVIDIA AI for Trailing Stop Optimization...")
+    logging.info(f"Sending {len(compressed_trades)} FULL trades (Highly Compressed) to NVIDIA AI for massive pattern recognition...")
 
     prompt = f"""
     You are an elite quantitative trading coach. 
-    I just ran a massive tick-by-tick simulation of our XGBoost trading algorithm on 1 year of data.
+    I just ran a massive tick-by-tick simulation of our XGBoost trading algorithm.
     
-    Out of {total_trades} trades, {len(losses)} hit the Stop Loss.
-    However, {len(high_mfe_losses)} of those losses actually went deep into profit (High MFE - Maximum Favorable Excursion) before abruptly reversing and hitting the Stop Loss!
+    Here is a massive dataset of {len(compressed_trades)} raw trades.
+    The format is: Pair, Direction, AI_Probability, Result(WIN/LOSS), Max_Favorable_Excursion_%, Max_Adverse_Excursion_%, RSI, Bollinger_Band_Width, Distance_from_SMA20
     
-    Here is a sample of the 50 most painful reversals (trades that were winning but turned into losers):
+    [DATA START]
+    {csv_payload}
+    [DATA END]
     
-    {json.dumps(sample_reversals, indent=2)}
-    
-    Analyze the 'mfe_pct' (how far into profit it went) and the technical indicators of these reversals.
-    Generate specific "Dynamic Rules" to prevent this. For example, if you notice trades with high RSI always reverse after 0.15% profit, create a rule to VETO or warn about it.
+    Analyze this massive dataset. Look for mathematical correlations of why trades LOST or hit high MFE and reversed.
+    Generate specific "Dynamic Rules" to prevent losses based on RSI, BBW, and SMA distance.
     
     Output EXACTLY this JSON array format and nothing else:
     [
