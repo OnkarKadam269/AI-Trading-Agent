@@ -73,7 +73,7 @@ def analyze_and_update_rules():
                 model="meta/llama-3.1-70b-instruct",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.2,
-                max_tokens=1024
+                max_tokens=4096
             )
             text = response.choices[0].message.content.strip()
         else:
@@ -91,6 +91,21 @@ def analyze_and_update_rules():
             text = text[:-3]
             
         rules = json.loads(text.strip())
+        
+        for rule in rules:
+            try:
+                # Bulletproof the evaluation against AI hallucinations
+                safe_features = features_dict.copy()
+                # If AI hallucinates future keys, provide defaults to prevent KeyError crash
+                for key in ['mfe_pct', 'mae_pct', 'result']:
+                    safe_features[key] = 0.0
+                    
+                if eval(rule['condition_python'], {"features": safe_features, "abs": abs}):
+                    logging.warning(f"VETO TRIGGERED: {rule['rule_name']} - {rule['reason']}")
+                    return True, rule['reason']
+            except Exception as e:
+                logging.error(f"Failed to evaluate rule {rule['rule_name']}: {e}")
+                continue
         
         with open(RULES_FILE, 'w') as f:
             json.dump(rules, f, indent=4)
