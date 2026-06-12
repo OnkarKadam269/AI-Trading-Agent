@@ -220,8 +220,17 @@ def run_agent():
             generate_4h_report()
             last_report_time = datetime.now()
             
-        logging.info("Sleeping for 15 minutes until next candle closes...")
-        time.sleep(900)
+        # Calculate seconds until the exact next 15-minute candle closes
+        now = datetime.now()
+        next_minute = ((now.minute // 15) + 1) * 15
+        next_run = now.replace(minute=0, second=2, microsecond=0) + timedelta(minutes=next_minute)
+        sleep_seconds = (next_run - now).total_seconds()
+        
+        if sleep_seconds <= 0:
+            sleep_seconds = 900
+            
+        logging.info(f"Sleeping for {int(sleep_seconds)} seconds until exact candle close at {next_run.strftime('%H:%M:%S')}...")
+        time.sleep(sleep_seconds)
 
 if __name__ == "__main__":
     run_agent()
