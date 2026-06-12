@@ -60,17 +60,18 @@ def analyze_deep_data():
     [DATA END]
     
     Analyze this massive dataset. Look for mathematical correlations of why trades LOST or hit high MFE and reversed.
-    Generate specific "Dynamic Rules" to prevent losses based on RSI, BBW, and SMA distance.
+    Generate specific "Pre-Trade Veto Rules" to prevent entering these bad setups based on RSI, BBW, and SMA distance.
+    
+    CRITICAL INSTRUCTION: The `condition_python` will be evaluated BEFORE a trade is placed. Therefore, you are STRICTLY FORBIDDEN from using `mfe_pct`, `mae_pct`, `result`, or `direction` inside `condition_python`. You can ONLY use the pre-trade features: 'rsi', 'bb_width', 'dist_sma20', and 'probability'.
     
     Output EXACTLY this JSON array format and nothing else:
     [
       {{
-        "rule_name": "Dynamic Trailing Stop Warning",
+        "rule_name": "Dynamic High Volatility Warning",
         "condition_python": "features['rsi'] > 65 and features['bb_width'] > 0.0015",
-        "reason": "Historically, these setups reverse aggressively after a small push. We must exit early."
+        "reason": "Historically, entering when RSI is high and bands are wide leads to an immediate reversal. Do not enter."
       }}
     ]
-    Make sure condition_python uses `features` dictionary.
     """
 
     try:
