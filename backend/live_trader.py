@@ -9,6 +9,7 @@ import os
 from datetime import datetime, timedelta
 import warnings
 from dotenv import load_dotenv
+import pickle
 
 load_dotenv()
 
@@ -27,6 +28,15 @@ if not RUNPOD_ENDPOINT_ID or not RUNPOD_API_KEY:
 PAIRS = ['EURUSDm', 'GBPUSDm', 'XAUUSDm', 'USDJPYm', 'AUDUSDm']
 TIMEFRAME = mt5.TIMEFRAME_M15
 LOT_SIZE = 0.01
+
+# Load Local AI Model
+model_path = os.path.join(os.path.dirname(__file__), 'kronos_model.pkl')
+try:
+    with open(model_path, 'rb') as f:
+        kronos_model = pickle.load(f)
+    logging.info("Kronos AI Model loaded locally successfully!")
+except Exception as e:
+    raise ValueError(f"Failed to load AI model: {e}")
 
 # System Tracking
 system_errors = []
@@ -82,39 +92,17 @@ def calculate_features(df):
         return None
 
 def ask_kronos_brain(features_dict):
-    url = f"https://api.runpod.ai/v2/{RUNPOD_ENDPOINT_ID}/runsync"
-    headers = {
-        "Authorization": f"Bearer {RUNPOD_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    payload = {"input": features_dict}
     try:
-        response = requests.post(url, headers=headers, json=payload, timeout=120).json()
+        df = pd.DataFrame([features_dict])
+        features = ['open', 'high', 'low', 'close', 'tick_volume', 'rsi', 'bb_width', 'dist_sma20']
+        X = df[features]
         
-        # If it's taking a long time (cold start), it will return IN_QUEUE or IN_PROGRESS
-        if response.get('status') in ['IN_QUEUE', 'IN_PROGRESS']:
-            job_id = response.get('id')
-            status_url = f"https://api.runpod.ai/v2/{RUNPOD_ENDPOINT_ID}/status/{job_id}"
-            logging.info(f"RunPod cold start detected. Waiting for GPU to wake up (Job: {job_id})...")
-            
-            while True:
-                time.sleep(3)
-                status_res = requests.get(status_url, headers=headers, timeout=20).json()
-                if status_res.get('status') == 'COMPLETED':
-                    return status_res['output']['prediction'], status_res['output']['probability']
-                elif status_res.get('status') in ['FAILED', 'CANCELLED']:
-                    log_error(f"RunPod Job Failed: {status_res}")
-                    return None, None
+        prediction = int(kronos_model.predict(X)[0])
+        probability = float(kronos_model.predict_proba(X)[0][1])
         
-        # If it returned immediately
-        if 'output' in response and response.get('status') == 'COMPLETED':
-            return response['output']['prediction'], response['output']['probability']
-        else:
-            log_error(f"RunPod Cloud Error: {response}")
-            return None, None
-            
+        return prediction, probability
     except Exception as e:
-        log_error(f"RunPod Connection Error: {e}")
+        log_error(f"Local AI Error: {e}")
         return None, None
 
 def place_trade(symbol, prediction, probability, current_price):
@@ -194,8 +182,8 @@ def run_bot():
     if not init_mt5():
         return
 
-    logging.info(f"KRONOS AI BOT STARTED! Connected to RunPod: {RUNPOD_ENDPOINT_ID}")
-    send_telegram("🚀 <b>Kronos AI Bot is officially ONLINE!</b>\nConnected to RunPod & MetaTrader 5.")
+    logging.info(f"KRONOS AI BOT STARTED! Running Locally for Instant Execution.")
+    send_telegram("🚀 <b>Kronos AI Bot is officially ONLINE!</b>\nRunning Locally for 0.01s Instant Execution.")
     
     last_report_time = datetime.now()
     
