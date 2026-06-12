@@ -1,0 +1,5 @@
+runpod==1.5.1
+xgboost
+pandas
+numpy
+scikit-learn
