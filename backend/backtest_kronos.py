@@ -89,8 +89,8 @@ def run_backtest():
         df['future_close'] = df['close'].shift(-5)
         df.dropna(inplace=True)
         
-        # Match the exact columns used during training
-        X = df.drop(columns=['future_close'])
+        features = ['open', 'high', 'low', 'close', 'tick_volume', 'rsi', 'bb_width', 'dist_sma20']
+        X = df[features]
         predictions = model.predict(X)
         df['prediction'] = predictions
         
