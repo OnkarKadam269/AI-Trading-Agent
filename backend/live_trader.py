@@ -56,6 +56,9 @@ def init_mt5():
     return True
 
 def get_data(symbol, n_candles=100):
+    if not mt5.symbol_select(symbol, True):
+        log_error(f"Failed to select {symbol} in MT5")
+        return None
     rates = mt5.copy_rates_from_pos(symbol, TIMEFRAME, 0, n_candles)
     if rates is None or len(rates) == 0:
         log_error(f"Failed to fetch data for {symbol}")
