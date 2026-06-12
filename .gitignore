@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+.env
+
+# Configs and Secrets (Crucial to ignore API keys)
+config.yaml
+secrets.json
+.env
+*.key
+encrypted_secrets.json
+
+# Logs and Data
+logs/
+*.log
+*.sqlite3
+*.csv
+
+# OS
+.DS_Store
+Thumbs.db

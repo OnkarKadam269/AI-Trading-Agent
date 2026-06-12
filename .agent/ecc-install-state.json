@@ -1,0 +1,3256 @@
+{
+  "schemaVersion": "ecc.install.v1",
+  "installedAt": "2026-06-09T13:15:08.829Z",
+  "target": {
+    "id": "antigravity-project",
+    "target": "antigravity",
+    "kind": "project",
+    "root": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent",
+    "installStatePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\ecc-install-state.json"
+  },
+  "request": {
+    "profile": null,
+    "modules": [],
+    "includeComponents": [],
+    "excludeComponents": [],
+    "legacyLanguages": [
+      "python"
+    ],
+    "legacyMode": true
+  },
+  "resolution": {
+    "selectedModules": [
+      "rules-core",
+      "agents-core",
+      "commands-core"
+    ],
+    "skippedModules": []
+  },
+  "source": {
+    "repoVersion": "2.0.0-rc.1",
+    "repoCommit": null,
+    "manifestVersion": 1
+  },
+  "operations": [
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\angular\\coding-style.md",
+      "sourceRelativePath": "rules/angular/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\angular-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\angular\\hooks.md",
+      "sourceRelativePath": "rules/angular/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\angular-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\angular\\patterns.md",
+      "sourceRelativePath": "rules/angular/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\angular-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\angular\\security.md",
+      "sourceRelativePath": "rules/angular/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\angular-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\angular\\testing.md",
+      "sourceRelativePath": "rules/angular/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\angular-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\arkts\\coding-style.md",
+      "sourceRelativePath": "rules/arkts/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\arkts-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\arkts\\hooks.md",
+      "sourceRelativePath": "rules/arkts/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\arkts-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\arkts\\patterns.md",
+      "sourceRelativePath": "rules/arkts/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\arkts-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\arkts\\security.md",
+      "sourceRelativePath": "rules/arkts/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\arkts-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\arkts\\testing.md",
+      "sourceRelativePath": "rules/arkts/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\arkts-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\common\\agents.md",
+      "sourceRelativePath": "rules/common/agents.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\common-agents.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\common\\code-review.md",
+      "sourceRelativePath": "rules/common/code-review.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\common-code-review.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\common\\coding-style.md",
+      "sourceRelativePath": "rules/common/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\common-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\common\\development-workflow.md",
+      "sourceRelativePath": "rules/common/development-workflow.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\common-development-workflow.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\common\\git-workflow.md",
+      "sourceRelativePath": "rules/common/git-workflow.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\common-git-workflow.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\common\\hooks.md",
+      "sourceRelativePath": "rules/common/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\common-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\common\\patterns.md",
+      "sourceRelativePath": "rules/common/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\common-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\common\\performance.md",
+      "sourceRelativePath": "rules/common/performance.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\common-performance.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\common\\security.md",
+      "sourceRelativePath": "rules/common/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\common-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\common\\testing.md",
+      "sourceRelativePath": "rules/common/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\common-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\cpp\\coding-style.md",
+      "sourceRelativePath": "rules/cpp/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\cpp-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\cpp\\hooks.md",
+      "sourceRelativePath": "rules/cpp/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\cpp-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\cpp\\patterns.md",
+      "sourceRelativePath": "rules/cpp/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\cpp-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\cpp\\security.md",
+      "sourceRelativePath": "rules/cpp/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\cpp-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\cpp\\testing.md",
+      "sourceRelativePath": "rules/cpp/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\cpp-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\csharp\\coding-style.md",
+      "sourceRelativePath": "rules/csharp/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\csharp-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\csharp\\hooks.md",
+      "sourceRelativePath": "rules/csharp/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\csharp-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\csharp\\patterns.md",
+      "sourceRelativePath": "rules/csharp/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\csharp-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\csharp\\security.md",
+      "sourceRelativePath": "rules/csharp/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\csharp-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\csharp\\testing.md",
+      "sourceRelativePath": "rules/csharp/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\csharp-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\dart\\coding-style.md",
+      "sourceRelativePath": "rules/dart/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\dart-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\dart\\hooks.md",
+      "sourceRelativePath": "rules/dart/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\dart-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\dart\\patterns.md",
+      "sourceRelativePath": "rules/dart/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\dart-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\dart\\security.md",
+      "sourceRelativePath": "rules/dart/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\dart-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\dart\\testing.md",
+      "sourceRelativePath": "rules/dart/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\dart-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\fsharp\\coding-style.md",
+      "sourceRelativePath": "rules/fsharp/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\fsharp-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\fsharp\\hooks.md",
+      "sourceRelativePath": "rules/fsharp/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\fsharp-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\fsharp\\patterns.md",
+      "sourceRelativePath": "rules/fsharp/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\fsharp-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\fsharp\\security.md",
+      "sourceRelativePath": "rules/fsharp/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\fsharp-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\fsharp\\testing.md",
+      "sourceRelativePath": "rules/fsharp/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\fsharp-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\golang\\coding-style.md",
+      "sourceRelativePath": "rules/golang/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\golang-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\golang\\hooks.md",
+      "sourceRelativePath": "rules/golang/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\golang-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\golang\\patterns.md",
+      "sourceRelativePath": "rules/golang/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\golang-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\golang\\security.md",
+      "sourceRelativePath": "rules/golang/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\golang-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\golang\\testing.md",
+      "sourceRelativePath": "rules/golang/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\golang-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\java\\coding-style.md",
+      "sourceRelativePath": "rules/java/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\java-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\java\\hooks.md",
+      "sourceRelativePath": "rules/java/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\java-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\java\\patterns.md",
+      "sourceRelativePath": "rules/java/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\java-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\java\\security.md",
+      "sourceRelativePath": "rules/java/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\java-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\java\\testing.md",
+      "sourceRelativePath": "rules/java/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\java-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\kotlin\\coding-style.md",
+      "sourceRelativePath": "rules/kotlin/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\kotlin-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\kotlin\\hooks.md",
+      "sourceRelativePath": "rules/kotlin/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\kotlin-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\kotlin\\patterns.md",
+      "sourceRelativePath": "rules/kotlin/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\kotlin-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\kotlin\\security.md",
+      "sourceRelativePath": "rules/kotlin/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\kotlin-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\kotlin\\testing.md",
+      "sourceRelativePath": "rules/kotlin/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\kotlin-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\perl\\coding-style.md",
+      "sourceRelativePath": "rules/perl/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\perl-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\perl\\hooks.md",
+      "sourceRelativePath": "rules/perl/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\perl-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\perl\\patterns.md",
+      "sourceRelativePath": "rules/perl/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\perl-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\perl\\security.md",
+      "sourceRelativePath": "rules/perl/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\perl-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\perl\\testing.md",
+      "sourceRelativePath": "rules/perl/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\perl-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\php\\coding-style.md",
+      "sourceRelativePath": "rules/php/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\php-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\php\\hooks.md",
+      "sourceRelativePath": "rules/php/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\php-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\php\\patterns.md",
+      "sourceRelativePath": "rules/php/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\php-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\php\\security.md",
+      "sourceRelativePath": "rules/php/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\php-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\php\\testing.md",
+      "sourceRelativePath": "rules/php/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\php-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\python\\coding-style.md",
+      "sourceRelativePath": "rules/python/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\python-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\python\\fastapi.md",
+      "sourceRelativePath": "rules/python/fastapi.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\python-fastapi.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\python\\hooks.md",
+      "sourceRelativePath": "rules/python/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\python-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\python\\patterns.md",
+      "sourceRelativePath": "rules/python/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\python-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\python\\security.md",
+      "sourceRelativePath": "rules/python/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\python-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\python\\testing.md",
+      "sourceRelativePath": "rules/python/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\python-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\react\\coding-style.md",
+      "sourceRelativePath": "rules/react/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\react-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\react\\hooks.md",
+      "sourceRelativePath": "rules/react/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\react-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\react\\patterns.md",
+      "sourceRelativePath": "rules/react/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\react-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\react\\security.md",
+      "sourceRelativePath": "rules/react/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\react-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\react\\testing.md",
+      "sourceRelativePath": "rules/react/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\react-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\README.md",
+      "sourceRelativePath": "rules/README.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\README.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\ruby\\coding-style.md",
+      "sourceRelativePath": "rules/ruby/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\ruby-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\ruby\\hooks.md",
+      "sourceRelativePath": "rules/ruby/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\ruby-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\ruby\\patterns.md",
+      "sourceRelativePath": "rules/ruby/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\ruby-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\ruby\\security.md",
+      "sourceRelativePath": "rules/ruby/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\ruby-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\ruby\\testing.md",
+      "sourceRelativePath": "rules/ruby/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\ruby-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\rust\\coding-style.md",
+      "sourceRelativePath": "rules/rust/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\rust-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\rust\\hooks.md",
+      "sourceRelativePath": "rules/rust/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\rust-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\rust\\patterns.md",
+      "sourceRelativePath": "rules/rust/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\rust-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\rust\\security.md",
+      "sourceRelativePath": "rules/rust/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\rust-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\rust\\testing.md",
+      "sourceRelativePath": "rules/rust/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\rust-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\swift\\coding-style.md",
+      "sourceRelativePath": "rules/swift/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\swift-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\swift\\hooks.md",
+      "sourceRelativePath": "rules/swift/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\swift-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\swift\\patterns.md",
+      "sourceRelativePath": "rules/swift/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\swift-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\swift\\security.md",
+      "sourceRelativePath": "rules/swift/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\swift-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\swift\\testing.md",
+      "sourceRelativePath": "rules/swift/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\swift-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\typescript\\coding-style.md",
+      "sourceRelativePath": "rules/typescript/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\typescript-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\typescript\\hooks.md",
+      "sourceRelativePath": "rules/typescript/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\typescript-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\typescript\\patterns.md",
+      "sourceRelativePath": "rules/typescript/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\typescript-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\typescript\\security.md",
+      "sourceRelativePath": "rules/typescript/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\typescript-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\typescript\\testing.md",
+      "sourceRelativePath": "rules/typescript/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\typescript-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\web\\coding-style.md",
+      "sourceRelativePath": "rules/web/coding-style.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\web-coding-style.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\web\\design-quality.md",
+      "sourceRelativePath": "rules/web/design-quality.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\web-design-quality.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\web\\hooks.md",
+      "sourceRelativePath": "rules/web/hooks.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\web-hooks.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\web\\patterns.md",
+      "sourceRelativePath": "rules/web/patterns.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\web-patterns.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\web\\performance.md",
+      "sourceRelativePath": "rules/web/performance.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\web-performance.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\web\\security.md",
+      "sourceRelativePath": "rules/web/security.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\web-security.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "rules-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\rules\\web\\testing.md",
+      "sourceRelativePath": "rules/web/testing.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\rules\\web-testing.md",
+      "strategy": "flatten-copy",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\plugins\\marketplace.json",
+      "sourceRelativePath": ".agents\\plugins\\marketplace.json",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\plugins\\marketplace.json",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\agent-introspection-debugging\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\agent-introspection-debugging\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\agent-introspection-debugging\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\agent-introspection-debugging\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\agent-introspection-debugging\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\agent-introspection-debugging\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\agent-sort\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\agent-sort\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\agent-sort\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\agent-sort\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\agent-sort\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\agent-sort\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\api-design\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\api-design\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\api-design\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\api-design\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\api-design\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\api-design\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\article-writing\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\article-writing\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\article-writing\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\article-writing\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\article-writing\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\article-writing\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\backend-patterns\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\backend-patterns\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\backend-patterns\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\backend-patterns\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\backend-patterns\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\backend-patterns\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\brand-voice\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\brand-voice\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\brand-voice\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\brand-voice\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\brand-voice\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\brand-voice\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\brand-voice\\references\\voice-profile-schema.md",
+      "sourceRelativePath": ".agents\\skills\\brand-voice\\references\\voice-profile-schema.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\brand-voice\\references\\voice-profile-schema.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\bun-runtime\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\bun-runtime\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\bun-runtime\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\bun-runtime\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\bun-runtime\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\bun-runtime\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\coding-standards\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\coding-standards\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\coding-standards\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\coding-standards\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\coding-standards\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\coding-standards\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\content-engine\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\content-engine\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\content-engine\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\content-engine\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\content-engine\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\content-engine\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\crosspost\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\crosspost\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\crosspost\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\crosspost\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\crosspost\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\crosspost\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\deep-research\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\deep-research\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\deep-research\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\deep-research\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\deep-research\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\deep-research\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\dmux-workflows\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\dmux-workflows\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\dmux-workflows\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\dmux-workflows\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\dmux-workflows\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\dmux-workflows\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\documentation-lookup\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\documentation-lookup\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\documentation-lookup\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\documentation-lookup\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\documentation-lookup\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\documentation-lookup\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\e2e-testing\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\e2e-testing\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\e2e-testing\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\e2e-testing\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\e2e-testing\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\e2e-testing\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\eval-harness\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\eval-harness\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\eval-harness\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\eval-harness\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\eval-harness\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\eval-harness\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\everything-claude-code\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\everything-claude-code\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\everything-claude-code\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\everything-claude-code\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\everything-claude-code\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\everything-claude-code\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\exa-search\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\exa-search\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\exa-search\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\exa-search\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\exa-search\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\exa-search\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\fal-ai-media\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\fal-ai-media\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\fal-ai-media\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\fal-ai-media\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\fal-ai-media\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\fal-ai-media\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\frontend-patterns\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\frontend-patterns\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\frontend-patterns\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\frontend-patterns\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\frontend-patterns\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\frontend-patterns\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\frontend-slides\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\frontend-slides\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\frontend-slides\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\frontend-slides\\STYLE_PRESETS.md",
+      "sourceRelativePath": ".agents\\skills\\frontend-slides\\STYLE_PRESETS.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\frontend-slides\\STYLE_PRESETS.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\frontend-slides\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\frontend-slides\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\frontend-slides\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\investor-materials\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\investor-materials\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\investor-materials\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\investor-materials\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\investor-materials\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\investor-materials\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\investor-outreach\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\investor-outreach\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\investor-outreach\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\investor-outreach\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\investor-outreach\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\investor-outreach\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\market-research\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\market-research\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\market-research\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\market-research\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\market-research\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\market-research\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\mcp-server-patterns\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\mcp-server-patterns\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\mcp-server-patterns\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\mcp-server-patterns\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\mcp-server-patterns\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\mcp-server-patterns\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\mle-workflow\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\mle-workflow\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\mle-workflow\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\mle-workflow\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\mle-workflow\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\mle-workflow\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\nextjs-turbopack\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\nextjs-turbopack\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\nextjs-turbopack\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\nextjs-turbopack\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\nextjs-turbopack\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\nextjs-turbopack\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\product-capability\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\product-capability\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\product-capability\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\product-capability\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\product-capability\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\product-capability\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\security-review\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\security-review\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\security-review\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\security-review\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\security-review\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\security-review\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\strategic-compact\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\strategic-compact\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\strategic-compact\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\strategic-compact\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\strategic-compact\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\strategic-compact\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\tdd-workflow\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\tdd-workflow\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\tdd-workflow\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\tdd-workflow\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\tdd-workflow\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\tdd-workflow\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\verification-loop\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\verification-loop\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\verification-loop\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\verification-loop\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\verification-loop\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\verification-loop\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\video-editing\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\video-editing\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\video-editing\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\video-editing\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\video-editing\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\video-editing\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\x-api\\SKILL.md",
+      "sourceRelativePath": ".agents\\skills\\x-api\\SKILL.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\x-api\\SKILL.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\.agents\\skills\\x-api\\agents\\openai.yaml",
+      "sourceRelativePath": ".agents\\skills\\x-api\\agents\\openai.yaml",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\.agents\\skills\\x-api\\agents\\openai.yaml",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\a11y-architect.md",
+      "sourceRelativePath": "agents\\a11y-architect.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\a11y-architect.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\architect.md",
+      "sourceRelativePath": "agents\\architect.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\architect.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\build-error-resolver.md",
+      "sourceRelativePath": "agents\\build-error-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\build-error-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\chief-of-staff.md",
+      "sourceRelativePath": "agents\\chief-of-staff.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\chief-of-staff.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\code-architect.md",
+      "sourceRelativePath": "agents\\code-architect.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\code-architect.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\code-explorer.md",
+      "sourceRelativePath": "agents\\code-explorer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\code-explorer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\code-reviewer.md",
+      "sourceRelativePath": "agents\\code-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\code-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\code-simplifier.md",
+      "sourceRelativePath": "agents\\code-simplifier.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\code-simplifier.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\comment-analyzer.md",
+      "sourceRelativePath": "agents\\comment-analyzer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\comment-analyzer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\conversation-analyzer.md",
+      "sourceRelativePath": "agents\\conversation-analyzer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\conversation-analyzer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\cpp-build-resolver.md",
+      "sourceRelativePath": "agents\\cpp-build-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\cpp-build-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\cpp-reviewer.md",
+      "sourceRelativePath": "agents\\cpp-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\cpp-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\csharp-reviewer.md",
+      "sourceRelativePath": "agents\\csharp-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\csharp-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\dart-build-resolver.md",
+      "sourceRelativePath": "agents\\dart-build-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\dart-build-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\database-reviewer.md",
+      "sourceRelativePath": "agents\\database-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\database-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\django-build-resolver.md",
+      "sourceRelativePath": "agents\\django-build-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\django-build-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\django-reviewer.md",
+      "sourceRelativePath": "agents\\django-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\django-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\doc-updater.md",
+      "sourceRelativePath": "agents\\doc-updater.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\doc-updater.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\docs-lookup.md",
+      "sourceRelativePath": "agents\\docs-lookup.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\docs-lookup.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\e2e-runner.md",
+      "sourceRelativePath": "agents\\e2e-runner.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\e2e-runner.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\fastapi-reviewer.md",
+      "sourceRelativePath": "agents\\fastapi-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\fastapi-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\flutter-reviewer.md",
+      "sourceRelativePath": "agents\\flutter-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\flutter-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\fsharp-reviewer.md",
+      "sourceRelativePath": "agents\\fsharp-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\fsharp-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\gan-evaluator.md",
+      "sourceRelativePath": "agents\\gan-evaluator.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\gan-evaluator.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\gan-generator.md",
+      "sourceRelativePath": "agents\\gan-generator.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\gan-generator.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\gan-planner.md",
+      "sourceRelativePath": "agents\\gan-planner.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\gan-planner.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\go-build-resolver.md",
+      "sourceRelativePath": "agents\\go-build-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\go-build-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\go-reviewer.md",
+      "sourceRelativePath": "agents\\go-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\go-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\harmonyos-app-resolver.md",
+      "sourceRelativePath": "agents\\harmonyos-app-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\harmonyos-app-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\harness-optimizer.md",
+      "sourceRelativePath": "agents\\harness-optimizer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\harness-optimizer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\healthcare-reviewer.md",
+      "sourceRelativePath": "agents\\healthcare-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\healthcare-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\homelab-architect.md",
+      "sourceRelativePath": "agents\\homelab-architect.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\homelab-architect.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\java-build-resolver.md",
+      "sourceRelativePath": "agents\\java-build-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\java-build-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\java-reviewer.md",
+      "sourceRelativePath": "agents\\java-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\java-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\kotlin-build-resolver.md",
+      "sourceRelativePath": "agents\\kotlin-build-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\kotlin-build-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\kotlin-reviewer.md",
+      "sourceRelativePath": "agents\\kotlin-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\kotlin-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\loop-operator.md",
+      "sourceRelativePath": "agents\\loop-operator.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\loop-operator.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\marketing-agent.md",
+      "sourceRelativePath": "agents\\marketing-agent.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\marketing-agent.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\mle-reviewer.md",
+      "sourceRelativePath": "agents\\mle-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\mle-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\network-architect.md",
+      "sourceRelativePath": "agents\\network-architect.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\network-architect.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\network-config-reviewer.md",
+      "sourceRelativePath": "agents\\network-config-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\network-config-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\network-troubleshooter.md",
+      "sourceRelativePath": "agents\\network-troubleshooter.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\network-troubleshooter.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\opensource-forker.md",
+      "sourceRelativePath": "agents\\opensource-forker.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\opensource-forker.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\opensource-packager.md",
+      "sourceRelativePath": "agents\\opensource-packager.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\opensource-packager.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\opensource-sanitizer.md",
+      "sourceRelativePath": "agents\\opensource-sanitizer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\opensource-sanitizer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\performance-optimizer.md",
+      "sourceRelativePath": "agents\\performance-optimizer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\performance-optimizer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\php-reviewer.md",
+      "sourceRelativePath": "agents\\php-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\php-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\planner.md",
+      "sourceRelativePath": "agents\\planner.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\planner.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\pr-test-analyzer.md",
+      "sourceRelativePath": "agents\\pr-test-analyzer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\pr-test-analyzer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\python-reviewer.md",
+      "sourceRelativePath": "agents\\python-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\python-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\pytorch-build-resolver.md",
+      "sourceRelativePath": "agents\\pytorch-build-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\pytorch-build-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\react-build-resolver.md",
+      "sourceRelativePath": "agents\\react-build-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\react-build-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\react-reviewer.md",
+      "sourceRelativePath": "agents\\react-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\react-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\refactor-cleaner.md",
+      "sourceRelativePath": "agents\\refactor-cleaner.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\refactor-cleaner.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\rust-build-resolver.md",
+      "sourceRelativePath": "agents\\rust-build-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\rust-build-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\rust-reviewer.md",
+      "sourceRelativePath": "agents\\rust-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\rust-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\security-reviewer.md",
+      "sourceRelativePath": "agents\\security-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\security-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\seo-specialist.md",
+      "sourceRelativePath": "agents\\seo-specialist.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\seo-specialist.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\silent-failure-hunter.md",
+      "sourceRelativePath": "agents\\silent-failure-hunter.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\silent-failure-hunter.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\swift-build-resolver.md",
+      "sourceRelativePath": "agents\\swift-build-resolver.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\swift-build-resolver.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\swift-reviewer.md",
+      "sourceRelativePath": "agents\\swift-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\swift-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\tdd-guide.md",
+      "sourceRelativePath": "agents\\tdd-guide.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\tdd-guide.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\type-design-analyzer.md",
+      "sourceRelativePath": "agents\\type-design-analyzer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\type-design-analyzer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\agents\\typescript-reviewer.md",
+      "sourceRelativePath": "agents\\typescript-reviewer.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\skills\\typescript-reviewer.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "agents-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\AGENTS.md",
+      "sourceRelativePath": "AGENTS.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\AGENTS.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\aside.md",
+      "sourceRelativePath": "commands\\aside.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\aside.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\auto-update.md",
+      "sourceRelativePath": "commands\\auto-update.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\auto-update.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\build-fix.md",
+      "sourceRelativePath": "commands\\build-fix.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\build-fix.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\checkpoint.md",
+      "sourceRelativePath": "commands\\checkpoint.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\checkpoint.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\code-review.md",
+      "sourceRelativePath": "commands\\code-review.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\code-review.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\cost-report.md",
+      "sourceRelativePath": "commands\\cost-report.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\cost-report.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\cpp-build.md",
+      "sourceRelativePath": "commands\\cpp-build.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\cpp-build.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\cpp-review.md",
+      "sourceRelativePath": "commands\\cpp-review.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\cpp-review.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\cpp-test.md",
+      "sourceRelativePath": "commands\\cpp-test.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\cpp-test.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\ecc-guide.md",
+      "sourceRelativePath": "commands\\ecc-guide.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\ecc-guide.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\evolve.md",
+      "sourceRelativePath": "commands\\evolve.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\evolve.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\fastapi-review.md",
+      "sourceRelativePath": "commands\\fastapi-review.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\fastapi-review.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\feature-dev.md",
+      "sourceRelativePath": "commands\\feature-dev.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\feature-dev.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\flutter-build.md",
+      "sourceRelativePath": "commands\\flutter-build.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\flutter-build.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\flutter-review.md",
+      "sourceRelativePath": "commands\\flutter-review.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\flutter-review.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\flutter-test.md",
+      "sourceRelativePath": "commands\\flutter-test.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\flutter-test.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\gan-build.md",
+      "sourceRelativePath": "commands\\gan-build.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\gan-build.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\gan-design.md",
+      "sourceRelativePath": "commands\\gan-design.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\gan-design.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\go-build.md",
+      "sourceRelativePath": "commands\\go-build.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\go-build.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\go-review.md",
+      "sourceRelativePath": "commands\\go-review.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\go-review.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\go-test.md",
+      "sourceRelativePath": "commands\\go-test.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\go-test.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\gradle-build.md",
+      "sourceRelativePath": "commands\\gradle-build.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\gradle-build.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\harness-audit.md",
+      "sourceRelativePath": "commands\\harness-audit.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\harness-audit.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\hookify-configure.md",
+      "sourceRelativePath": "commands\\hookify-configure.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\hookify-configure.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\hookify-help.md",
+      "sourceRelativePath": "commands\\hookify-help.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\hookify-help.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\hookify-list.md",
+      "sourceRelativePath": "commands\\hookify-list.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\hookify-list.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\hookify.md",
+      "sourceRelativePath": "commands\\hookify.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\hookify.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\instinct-export.md",
+      "sourceRelativePath": "commands\\instinct-export.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\instinct-export.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\instinct-import.md",
+      "sourceRelativePath": "commands\\instinct-import.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\instinct-import.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\instinct-status.md",
+      "sourceRelativePath": "commands\\instinct-status.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\instinct-status.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\jira.md",
+      "sourceRelativePath": "commands\\jira.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\jira.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\kotlin-build.md",
+      "sourceRelativePath": "commands\\kotlin-build.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\kotlin-build.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\kotlin-review.md",
+      "sourceRelativePath": "commands\\kotlin-review.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\kotlin-review.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\kotlin-test.md",
+      "sourceRelativePath": "commands\\kotlin-test.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\kotlin-test.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\learn-eval.md",
+      "sourceRelativePath": "commands\\learn-eval.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\learn-eval.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\learn.md",
+      "sourceRelativePath": "commands\\learn.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\learn.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\loop-start.md",
+      "sourceRelativePath": "commands\\loop-start.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\loop-start.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\loop-status.md",
+      "sourceRelativePath": "commands\\loop-status.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\loop-status.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\marketing-campaign.md",
+      "sourceRelativePath": "commands\\marketing-campaign.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\marketing-campaign.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\model-route.md",
+      "sourceRelativePath": "commands\\model-route.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\model-route.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\multi-backend.md",
+      "sourceRelativePath": "commands\\multi-backend.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\multi-backend.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\multi-execute.md",
+      "sourceRelativePath": "commands\\multi-execute.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\multi-execute.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\multi-frontend.md",
+      "sourceRelativePath": "commands\\multi-frontend.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\multi-frontend.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\multi-plan.md",
+      "sourceRelativePath": "commands\\multi-plan.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\multi-plan.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\multi-workflow.md",
+      "sourceRelativePath": "commands\\multi-workflow.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\multi-workflow.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\orch-add-feature.md",
+      "sourceRelativePath": "commands\\orch-add-feature.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\orch-add-feature.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\orch-build-mvp.md",
+      "sourceRelativePath": "commands\\orch-build-mvp.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\orch-build-mvp.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\orch-change-feature.md",
+      "sourceRelativePath": "commands\\orch-change-feature.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\orch-change-feature.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\orch-fix-defect.md",
+      "sourceRelativePath": "commands\\orch-fix-defect.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\orch-fix-defect.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\orch-refine-code.md",
+      "sourceRelativePath": "commands\\orch-refine-code.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\orch-refine-code.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\plan-prd.md",
+      "sourceRelativePath": "commands\\plan-prd.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\plan-prd.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\plan.md",
+      "sourceRelativePath": "commands\\plan.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\plan.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\pm2.md",
+      "sourceRelativePath": "commands\\pm2.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\pm2.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\pr.md",
+      "sourceRelativePath": "commands\\pr.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\pr.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\project-init.md",
+      "sourceRelativePath": "commands\\project-init.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\project-init.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\projects.md",
+      "sourceRelativePath": "commands\\projects.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\projects.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\promote.md",
+      "sourceRelativePath": "commands\\promote.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\promote.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\prp-commit.md",
+      "sourceRelativePath": "commands\\prp-commit.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\prp-commit.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\prp-implement.md",
+      "sourceRelativePath": "commands\\prp-implement.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\prp-implement.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\prp-plan.md",
+      "sourceRelativePath": "commands\\prp-plan.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\prp-plan.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\prp-pr.md",
+      "sourceRelativePath": "commands\\prp-pr.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\prp-pr.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\prp-prd.md",
+      "sourceRelativePath": "commands\\prp-prd.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\prp-prd.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\prune.md",
+      "sourceRelativePath": "commands\\prune.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\prune.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\python-review.md",
+      "sourceRelativePath": "commands\\python-review.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\python-review.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\quality-gate.md",
+      "sourceRelativePath": "commands\\quality-gate.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\quality-gate.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\react-build.md",
+      "sourceRelativePath": "commands\\react-build.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\react-build.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\react-review.md",
+      "sourceRelativePath": "commands\\react-review.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\react-review.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\react-test.md",
+      "sourceRelativePath": "commands\\react-test.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\react-test.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\refactor-clean.md",
+      "sourceRelativePath": "commands\\refactor-clean.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\refactor-clean.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\resume-session.md",
+      "sourceRelativePath": "commands\\resume-session.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\resume-session.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\review-pr.md",
+      "sourceRelativePath": "commands\\review-pr.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\review-pr.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\rust-build.md",
+      "sourceRelativePath": "commands\\rust-build.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\rust-build.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\rust-review.md",
+      "sourceRelativePath": "commands\\rust-review.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\rust-review.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\rust-test.md",
+      "sourceRelativePath": "commands\\rust-test.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\rust-test.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\santa-loop.md",
+      "sourceRelativePath": "commands\\santa-loop.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\santa-loop.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\save-session.md",
+      "sourceRelativePath": "commands\\save-session.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\save-session.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\security-scan.md",
+      "sourceRelativePath": "commands\\security-scan.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\security-scan.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\sessions.md",
+      "sourceRelativePath": "commands\\sessions.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\sessions.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\setup-pm.md",
+      "sourceRelativePath": "commands\\setup-pm.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\setup-pm.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\skill-create.md",
+      "sourceRelativePath": "commands\\skill-create.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\skill-create.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\skill-health.md",
+      "sourceRelativePath": "commands\\skill-health.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\skill-health.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\test-coverage.md",
+      "sourceRelativePath": "commands\\test-coverage.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\test-coverage.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\update-codemaps.md",
+      "sourceRelativePath": "commands\\update-codemaps.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\update-codemaps.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    },
+    {
+      "kind": "copy-file",
+      "moduleId": "commands-core",
+      "sourcePath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\ECC-main\\commands\\update-docs.md",
+      "sourceRelativePath": "commands\\update-docs.md",
+      "destinationPath": "C:\\Users\\Omkar\\OneDrive\\Desktop\\AI AGENT\\.agent\\workflows\\update-docs.md",
+      "strategy": "preserve-relative-path",
+      "ownership": "managed",
+      "scaffoldOnly": false
+    }
+  ]
+}

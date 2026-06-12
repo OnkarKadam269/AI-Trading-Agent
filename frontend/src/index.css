@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-dark: hsl(222, 47%, 7%);
+  --panel-bg: rgba(20, 25, 35, 0.6);
+  --panel-border: rgba(255, 255, 255, 0.06);
+  --text-primary: hsl(210, 40%, 98%);
+  --text-muted: hsl(215, 20%, 65%);
+  --accent-cyan: hsl(190, 90%, 50%);
+  --accent-green: hsl(150, 80%, 45%);
+  --accent-red: hsl(350, 80%, 55%);
+  --glow-cyan: 0 0 20px rgba(0, 212, 255, 0.15);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 212, 255, 0.05), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(100, 50, 255, 0.05), transparent 40%);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Header */
+.header-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.stat-value.green { color: var(--accent-green); }
+.stat-value.cyan { color: var(--accent-cyan); text-shadow: var(--glow-cyan); }
+
+/* Main Grid */
+.main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+th {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.badge.buy { background: rgba(20, 200, 100, 0.15); color: var(--accent-green); border: 1px solid rgba(20, 200, 100, 0.3); }
+.badge.sell { background: rgba(255, 50, 100, 0.15); color: var(--accent-red); border: 1px solid rgba(255, 50, 100, 0.3); }
+.badge.open { background: rgba(0, 212, 255, 0.15); color: var(--accent-cyan); border: 1px solid rgba(0, 212, 255, 0.3); }
+
+/* AI Brain Feed */
+.brain-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feed-item {
+  padding-left: 16px;
+  border-left: 2px solid var(--accent-cyan);
+  position: relative;
+}
+
+.feed-item::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: var(--glow-cyan);
+}
+
+.feed-agent {
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.feed-message {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.feed-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.live-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-green);
+  margin-right: 8px;
+  animation: pulse 2s infinite;
+}
