@@ -301,6 +301,14 @@ def run_agent():
     
     while True:
         current_time = datetime.now()
+        utc_now = datetime.utcnow()
+        
+        # Market is globally closed on Saturdays, and most of Sunday (until 21:00 UTC)
+        if utc_now.weekday() == 5 or (utc_now.weekday() == 6 and utc_now.hour < 21):
+            logging.info("Weekend detected. Markets are closed. Sleeping for 1 hour...")
+            time.sleep(3600)
+            continue
+            
         logging.info(f"Scanning markets at {current_time.strftime('%H:%M:%S')}...")
         
         for pair in PAIRS:
