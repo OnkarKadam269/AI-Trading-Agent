@@ -29,6 +29,9 @@ def run_1_year_export():
             exit_time_str = t.get('exit_time')
             if exit_time_str and exit_time_str != "None":
                 exit_time = datetime.strptime(exit_time_str, "%Y-%m-%d %H:%M:%S")
+                # Fix for corrupted MT5 historical data gaps that set exit dates months in the future
+                if (exit_time - entry_time).total_seconds() > 4 * 3600:
+                    exit_time = entry_time + timedelta(hours=4)
             else:
                 exit_time = entry_time + timedelta(minutes=t.get('duration_minutes', 120))
                 
