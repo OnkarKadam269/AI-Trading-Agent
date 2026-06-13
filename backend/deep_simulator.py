@@ -12,10 +12,10 @@ from datetime import datetime, timedelta
 warnings.filterwarnings('ignore')
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - MFE/MAE SIMULATOR - %(message)s')
 
-PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "XAUUSD", "USDCHF"]
+PAIRS = ["GBPUSD", "USDJPY", "XAUUSD", "AUDUSD"]
 TIMEFRAME_M15 = mt5.TIMEFRAME_M15
 TIMEFRAME_M1 = mt5.TIMEFRAME_M1
-CANDLES_M15 = 15000  # Approx 6-8 months of data
+CANDLES_M15 = 25000  # Approx 1 year of data
 
 SL_PCT = 0.002
 TP_PCT = 0.003
