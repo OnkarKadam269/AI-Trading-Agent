@@ -29,9 +29,9 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 if not RUNPOD_ENDPOINT_ID or not RUNPOD_API_KEY:
     raise ValueError("Missing RUNPOD credentials in .env")
 
-PAIRS = ['EURUSDm', 'GBPUSDm', 'XAUUSDm', 'USDJPYm', 'AUDUSDm']
+PAIRS = ['GBPUSDm', 'XAUUSDm', 'USDJPYm', 'AUDUSDm']
 TIMEFRAME = mt5.TIMEFRAME_M15
-LOT_SIZE = 0.01
+RISK_PER_TRADE_PCT = 0.001
 
 # Load Local AI Model
 model_path = os.path.join(os.path.dirname(__file__), 'kronos_model.pkl')
@@ -109,6 +109,45 @@ def ask_kronos_brain(features_dict):
         log_error(f"Local AI Error: {e}")
         return None, None
 
+def calculate_position_size(symbol, current_price, sl_price):
+    try:
+        account = mt5.account_info()
+        if account is None:
+            log_error("Failed to fetch account info for position sizing")
+            return 0.01 # Fallback
+            
+        equity = account.equity
+        risk_amount = equity * RISK_PER_TRADE_PCT
+        
+        symbol_info = mt5.symbol_info(symbol)
+        if symbol_info is None:
+            return 0.01
+            
+        tick_size = symbol_info.trade_tick_size
+        tick_value = symbol_info.trade_tick_value
+        
+        if tick_size == 0 or tick_value == 0:
+            return 0.01
+            
+        sl_distance_points = abs(current_price - sl_price) / tick_size
+        
+        if sl_distance_points == 0:
+            return 0.01
+            
+        raw_lot_size = risk_amount / (sl_distance_points * tick_value)
+        
+        vol_step = symbol_info.volume_step
+        min_vol = symbol_info.volume_min
+        max_vol = symbol_info.volume_max
+        
+        rounded_lot = round(raw_lot_size / vol_step) * vol_step
+        final_lot = max(min_vol, min(rounded_lot, max_vol))
+        
+        return float(round(final_lot, 2))
+    except Exception as e:
+        log_error(f"Error calculating position size: {e}")
+        return 0.01
+
 def place_trade(symbol, prediction, probability, current_price, features_dict):
     global trades_taken_this_session
     positions = mt5.positions_get(symbol=symbol)
@@ -134,10 +173,13 @@ def place_trade(symbol, prediction, probability, current_price, features_dict):
         order_type = mt5.ORDER_TYPE_SELL
         logging.info(f"[{symbol}] KRONOS SAYS SELL! (Prob: {1-probability:.2f})")
 
+    # Dynamic Volatility-Adjusted Lot Size
+    calculated_lot_size = calculate_position_size(symbol, current_price, sl)
+
     request = {
         "action": mt5.TRADE_ACTION_DEAL,
         "symbol": symbol,
-        "volume": LOT_SIZE,
+        "volume": calculated_lot_size,
         "type": order_type,
         "price": mt5.symbol_info_tick(symbol).ask if order_type == mt5.ORDER_TYPE_BUY else mt5.symbol_info_tick(symbol).bid,
         "sl": sl,
@@ -166,7 +208,7 @@ def place_trade(symbol, prediction, probability, current_price, features_dict):
                 stop_loss=sl,
                 take_profit_1=tp,
                 take_profit_2=tp,
-                lot_size=LOT_SIZE,
+                lot_size=calculated_lot_size,
                 confidence=probability,
                 reasoning=features_dict
             )
