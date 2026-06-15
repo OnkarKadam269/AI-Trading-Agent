@@ -256,13 +256,7 @@ def check_closed_trades():
                     break
         db.close()
         
-        if closed_any:
-            logging.info("A trade just closed! Triggering Cognitive Coach Autopsy...")
-            import cognitive_coach
-            rules = cognitive_coach.analyze_and_update_rules()
-            if rules and len(rules) > 0:
-                send_telegram(f"🧠 <b>COACH UPDATE</b>\n\nThe AI Coach just analyzed the recent closed trades and generated {len(rules)} new Avoidance Rules to prevent future losses!")
-                
+
     except Exception as e:
         log_error(f"Error checking closed trades: {e}")
 
@@ -328,27 +322,6 @@ def run_agent():
             prediction, probability = ask_kronos_brain(features_dict)
             
             if prediction is not None:
-                # Coach Veto Check
-                vetoed = False
-                veto_reason = ""
-                import cognitive_coach
-                rules = cognitive_coach.load_rules()
-                
-                for rule in rules:
-                    try:
-                        # Safely evaluate the python condition
-                        if eval(rule['condition_python'], {"features": features_dict}):
-                            vetoed = True
-                            veto_reason = rule['reason']
-                            break
-                    except:
-                        pass
-                
-                if vetoed:
-                    logging.warning(f"[{pair}] COACH VETO: {veto_reason}")
-                    send_telegram(f"🛑 <b>COACH VETOED TRADE</b>\n\n<b>Pair:</b> {pair}\n<b>Reason:</b> {veto_reason}\n\n<i>Agent is sitting this one out to protect capital based on historical lessons.</i>")
-                    continue
-                    
                 if probability > 0.60:
                     place_trade(pair, 1, probability, float(latest_candle['close']), features_dict)
                 elif probability < 0.40:
