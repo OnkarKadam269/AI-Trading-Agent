@@ -42,9 +42,21 @@ try:
 except Exception as e:
     raise ValueError(f"Failed to load AI model: {e}")
 
-# System Tracking
-system_errors = []
-trades_taken_this_session = 0
+# Persistent System Tracking
+STATE_FILE = os.path.join(os.path.dirname(__file__), "reporter_state.json")
+
+def load_state():
+    if os.path.exists(STATE_FILE):
+        try:
+            with open(STATE_FILE, 'r') as f:
+                return json.load(f)
+        except:
+            pass
+    return {"last_report_time": 0.0, "errors": [], "trades": 0}
+
+def save_state(state):
+    with open(STATE_FILE, 'w') as f:
+        json.dump(state, f)
 
 def send_telegram(text):
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
@@ -59,7 +71,9 @@ def send_telegram(text):
 def log_error(msg):
     logging.error(msg)
     time_str = datetime.now().strftime("%H:%M")
-    system_errors.append(f"[{time_str}] {msg}")
+    state = load_state()
+    state["errors"].append(f"[{time_str}] {msg}")
+    save_state(state)
 
 def init_mt5():
     if not mt5.initialize():
@@ -149,7 +163,6 @@ def calculate_position_size(symbol, current_price, sl_price):
         return 0.01
 
 def place_trade(symbol, prediction, probability, current_price, features_dict):
-    global trades_taken_this_session
     positions = mt5.positions_get(symbol=symbol)
     if positions is None:
         log_error(f"Failed to get open positions for {symbol}")
@@ -195,7 +208,9 @@ def place_trade(symbol, prediction, probability, current_price, features_dict):
     if result.retcode != mt5.TRADE_RETCODE_DONE:
         log_error(f"Order failed for {symbol}: {result.comment}")
     else:
-        trades_taken_this_session += 1
+        state = load_state()
+        state["trades"] = state.get("trades", 0) + 1
+        save_state(state)
         # Save to Memory System (DB)
         try:
             db = SessionLocal()
@@ -261,7 +276,7 @@ def check_closed_trades():
         log_error(f"Error checking closed trades: {e}")
 
 def generate_4h_report():
-    global system_errors, trades_taken_this_session
+    state = load_state()
     account_info = mt5.account_info()
     balance = account_info.balance if account_info else "Unknown"
     equity = account_info.equity if account_info else "Unknown"
@@ -269,11 +284,12 @@ def generate_4h_report():
     report = f"📊 <b>KRONOS 4-HOUR PERFORMANCE REPORT</b> 📊\n\n"
     report += f"💰 <b>Balance:</b> ${balance}\n"
     report += f"📈 <b>Equity:</b> ${equity}\n"
-    report += f"🎯 <b>Trades Taken:</b> {trades_taken_this_session}\n\n"
+    report += f"🎯 <b>Trades Taken:</b> {state.get('trades', 0)}\n\n"
     
-    if len(system_errors) > 0:
-        report += f"⚠️ <b>System Breakdowns ({len(system_errors)}):</b>\n"
-        for err in system_errors[-5:]: # Only show last 5
+    errors = state.get("errors", [])
+    if len(errors) > 0:
+        report += f"⚠️ <b>System Breakdowns ({len(errors)}):</b>\n"
+        for err in errors[-5:]: # Only show last 5
             report += f"- {err}\n"
     else:
         report += "✅ <b>System Health:</b> 100% Perfect (No Breakdowns)\n"
@@ -281,8 +297,10 @@ def generate_4h_report():
     send_telegram(report)
     
     # Reset tracking
-    system_errors = []
-    trades_taken_this_session = 0
+    state["errors"] = []
+    state["trades"] = 0
+    state["last_report_time"] = datetime.now().timestamp()
+    save_state(state)
 
 def run_agent():
     if not init_mt5():
@@ -291,7 +309,10 @@ def run_agent():
     logging.info(f"KRONOS AI AGENT STARTED! Running Locally for Instant Execution.")
     send_telegram("🚀 <b>Kronos AI Agent is officially ONLINE!</b>\nRunning Locally for 0.01s Instant Execution.")
     
-    last_report_time = datetime.now()
+    state = load_state()
+    if state.get("last_report_time", 0.0) == 0.0:
+        state["last_report_time"] = datetime.now().timestamp()
+        save_state(state)
     
     while True:
         current_time = datetime.now()
@@ -330,9 +351,9 @@ def run_agent():
                     logging.info(f"[{pair}] Market is too noisy (Prob: {probability:.2f}). Sitting out.")
             
         # Check if 4 hours have passed for the report
-        if (datetime.now() - last_report_time).total_seconds() >= 4 * 3600:
+        state = load_state()
+        if (datetime.now().timestamp() - state.get("last_report_time", 0.0)) >= 4 * 3600:
             generate_4h_report()
-            last_report_time = datetime.now()
             
         # Update Memory System with any closed trades
         check_closed_trades()
