@@ -31,7 +31,7 @@ if not RUNPOD_ENDPOINT_ID or not RUNPOD_API_KEY:
 
 PAIRS = ['GBPUSDm', 'XAUUSDm', 'USDJPYm', 'AUDUSDm']
 TIMEFRAME = mt5.TIMEFRAME_M15
-RISK_PER_TRADE_PCT = 0.001
+RISK_PER_TRADE_PCT = 0.002
 
 # Load Local AI Model
 model_path = os.path.join(os.path.dirname(__file__), 'kronos_model.pkl')
