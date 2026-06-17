@@ -47,9 +47,8 @@ def get_m15_data(symbol):
 
 def get_m1_data_forward(symbol, start_time, max_candles=1440): # max 24 hours
     real_symbol = get_real_symbol(symbol)
-    # Convert start_time to UTC timestamp
     start_ts = int(start_time.timestamp())
-    rates = mt5.copy_rates_from(real_symbol, TIMEFRAME_M1, start_ts, max_candles)
+    rates = mt5.copy_rates_range(real_symbol, TIMEFRAME_M1, start_ts, start_ts + (max_candles * 60))
     if rates is None or len(rates) == 0:
         return pd.DataFrame()
     df = pd.DataFrame(rates)
