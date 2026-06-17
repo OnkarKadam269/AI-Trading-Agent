@@ -55,9 +55,9 @@ def run_1_year_export():
     print(f"Filtered 1-Year Trades (No Overlaps): {len(filtered_trades)}")
     
     # Now run the quant simulation on the filtered trades
-    starting_capital = 1000.0
+    starting_capital = 10000.0
     capital = starting_capital
-    risk_per_trade = 0.001 # 0.1%
+    risk_per_trade = 0.002 # 0.2%
     reward_risk_ratio = 1.5
     
     daily_pnl = defaultdict(float)
