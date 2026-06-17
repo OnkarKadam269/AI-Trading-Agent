@@ -114,8 +114,9 @@ def train_model():
     accuracy = accuracy_score(y_test, predictions)
     logger.info(f"Training Complete! Model Accuracy: {accuracy * 100:.2f}%")
     
-    # Save the model
-    with open('kronos_model.pkl', 'wb') as f:
+    import os
+    model_path = os.path.join(os.path.dirname(__file__), 'kronos_model.pkl')
+    with open(model_path, 'wb') as f:
         pickle.dump(model, f)
     logger.info("Model saved successfully as 'kronos_model.pkl'. Ready for RunPod!")
 
