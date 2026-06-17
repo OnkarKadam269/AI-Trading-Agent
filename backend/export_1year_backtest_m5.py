@@ -14,53 +14,91 @@ def run_1_year_export():
     # Sort all trades chronologically
     all_trades.sort(key=lambda x: datetime.strptime(x['entry_time'], "%Y-%m-%d %H:%M:%S"))
     
-    filtered_trades = []
+    PAIRS = set(t.get('pair') for t in all_trades if t.get('pair'))
+    RRR_TIERS = ["1:1", "1:1.5", "1:2", "1:3"]
+    stats = {}
     
-    # Track the exit time of the last trade for each pair to enforce no-overlap rule
-    last_exit_times = defaultdict(lambda: datetime.min)
+    # We will save the 1:1.5 trades specifically for the CSV generation
+    csv_filtered_trades = []
     
-    for t in all_trades:
-        pair = t.get('pair')
-        if pair == 'EURUSD': 
-            continue
+    for rrr in RRR_TIERS:
+        last_exit_times = {pair: datetime(1970, 1, 1) for pair in PAIRS}
+        filtered_trades = []
+        
+        for t in all_trades:
+            pair = t.get('pair')
+            if not pair: continue
             
-        try:
-            entry_time = datetime.strptime(t['entry_time'], "%Y-%m-%d %H:%M:%S")
-            exit_time_str = t.get('exit_time')
+            entry_time_str = t.get('entry_time')
+            if not entry_time_str: continue
+            entry_time = datetime.strptime(entry_time_str, "%Y-%m-%d %H:%M:%S")
+            
+            target = t.get('targets', {}).get(rrr)
+            if not target: continue
+            
+            exit_time_str = target.get('exit_time')
             if exit_time_str and exit_time_str != "None":
                 exit_time = datetime.strptime(exit_time_str, "%Y-%m-%d %H:%M:%S")
-                # Fix for corrupted MT5 historical data gaps that set exit dates months in the future
-                if (exit_time - entry_time).total_seconds() > 4 * 3600:
-                    exit_time = entry_time + timedelta(hours=4)
             else:
-                exit_time = entry_time + timedelta(minutes=t.get('duration_minutes', 120))
+                exit_time = entry_time + timedelta(minutes=120)
                 
             # Only take the trade if the previous trade on this pair has closed
             if entry_time >= last_exit_times[pair]:
-                filtered_trades.append({
-                    'dt': entry_time,
+                trade_obj = {
+                    'result': target.get('result', 'LOSS'),
                     'date': entry_time.strftime("%Y-%m-%d"),
                     'time': entry_time.strftime("%H:%M:%S"),
-                    'exit_dt': exit_time,
                     'pair': pair,
-                    'direction': t.get('direction', 'BUY'),
-                    'result': t.get('result', 'LOSS')
-                })
+                    'direction': t.get('direction', 'BUY')
+                }
+                filtered_trades.append(trade_obj)
+                
+                if rrr == "1:1.5":
+                    csv_filtered_trades.append(trade_obj)
+                    
                 last_exit_times[pair] = exit_time
                 
-        except Exception as e:
-            continue
-            
-    print(f"Original 1-Year Trades (Excl EURUSD): {len([t for t in all_trades if t.get('pair') != 'EURUSD'])}")
-    print(f"Filtered 1-Year Trades (No Overlaps): {len(filtered_trades)}")
+        # Calculate Profit
+        starting_capital = 10000.0
+        capital = starting_capital
+        risk_per_trade = 0.002
+        reward_mult = {"1:1": 1.0, "1:1.5": 1.5, "1:2": 2.0, "1:3": 3.0}[rrr]
+        
+        wins = 0
+        losses = 0
+        for ft in filtered_trades:
+            risk_amount = capital * risk_per_trade
+            if ft['result'] == 'WIN':
+                capital += (risk_amount * reward_mult)
+                wins += 1
+            else:
+                capital -= risk_amount
+                losses += 1
+                
+        win_rate = wins / max(1, (wins + losses))
+        stats[rrr] = {
+            "trades": wins + losses,
+            "win_rate": win_rate,
+            "profit": capital - starting_capital
+        }
     
-    # Now run the quant simulation on the filtered trades
+    print("\n--- KRONOS M5 RRR ANALYSIS MATRIX ---")
+    for rrr, s in stats.items():
+        print(f"RRR {rrr} -> Trades: {s['trades']} | Win Rate: {s['win_rate']*100:.1f}% | Net Profit: ${s['profit']:.2f}")
+    print("--------------------------------------\n")
+    
+    # Standard backtest continues below for specific strategy
     starting_capital = 10000.0
     capital = starting_capital
     risk_per_trade = 0.002 # 0.2%
     reward_risk_ratio = 1.5
     
     daily_pnl = defaultdict(float)
+    trade_results = []
+    
+    wins = 0
+    losses = 0
+    
     peak_equity = starting_capital
     max_drawdown_pct = 0.0
     max_drawdown_usd = 0.0
@@ -73,11 +111,14 @@ def run_1_year_export():
     current_loss_streak = 0
     max_loss_streak = 0
     
+    # We will output to CSV file
+    CSV_OUTPUT = os.path.join(os.path.dirname(__file__), '6_month_backtest_report_m5.csv')
     with open(CSV_OUTPUT, 'w', newline='') as f:
+        import csv
         writer = csv.writer(f)
-        writer.writerow(['Trade Number', 'Date', 'Time', 'Pair', 'Direction', 'Result', 'Risk Amount ($)', 'Profit/Loss ($)', 'New Account Balance ($)'])
+        writer.writerow(['Date', 'Time', 'Pair', 'Direction', 'Result', 'Risk Amount ($)', 'Profit/Loss ($)', 'New Account Balance ($)'])
         
-        for idx, t in enumerate(filtered_trades):
+        for idx, t in enumerate(csv_filtered_trades):
             risk_amount = capital * risk_per_trade
             
             if t['result'] == 'WIN':

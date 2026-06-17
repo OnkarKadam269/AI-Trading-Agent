@@ -18,7 +18,12 @@ TIMEFRAME_M1 = mt5.TIMEFRAME_M1
 CANDLES_M5 = 75000  # Approx 1 year of data
 
 SL_PCT = 0.002
-TP_PCT = 0.003
+RRR_TARGETS = {
+    "1:1": 0.002,
+    "1:1.5": 0.003,
+    "1:2": 0.004,
+    "1:3": 0.006
+}
 
 RESULTS_FILE = os.path.join(os.path.dirname(__file__), 'deep_backtest_results_m5.json')
 
@@ -106,13 +111,24 @@ def run_deep_simulation():
             probability = float(row['probability'])
             direction = "BUY" if probability > 0.60 else "SELL"
             
-            # SL and TP
+            # SL is constant
             if direction == "BUY":
                 sl = entry_price * (1 - SL_PCT)
-                tp = entry_price * (1 + TP_PCT)
             else:
                 sl = entry_price * (1 + SL_PCT)
-                tp = entry_price * (1 - TP_PCT)
+                
+            targets = {}
+            for rrr, tp_pct in RRR_TARGETS.items():
+                if direction == "BUY":
+                    tp = entry_price * (1 + tp_pct)
+                else:
+                    tp = entry_price * (1 - tp_pct)
+                targets[rrr] = {
+                    "tp": tp,
+                    "result": "",
+                    "exit_time": None,
+                    "active": True
+                }
                 
             # Drop down to M1 to track tick-by-tick
             m1_df = get_m1_data_forward(symbol, entry_time)
@@ -120,46 +136,53 @@ def run_deep_simulation():
                 
             mfe_price = entry_price
             mae_price = entry_price
-            exit_price = None
-            exit_time = None
-            result = ""
             
             for _, m1_row in m1_df.iterrows():
                 high = m1_row['high']
                 low = m1_row['low']
                 
-                # Track Max Favorable / Adverse Excursions
                 if direction == "BUY":
                     if high > mfe_price: mfe_price = high
                     if low < mae_price: mae_price = low
                     
-                    if low <= sl:
-                        exit_price = sl
-                        exit_time = m1_row['time']
-                        result = "LOSS"
-                        break
-                    if high >= tp:
-                        exit_price = tp
-                        exit_time = m1_row['time']
-                        result = "WIN"
-                        break
+                    for rrr, target in targets.items():
+                        if not target["active"]: continue
+                        if low <= sl:
+                            target["exit_time"] = str(m1_row['time'])
+                            target["result"] = "LOSS"
+                            target["active"] = False
+                        elif high >= target["tp"]:
+                            target["exit_time"] = str(m1_row['time'])
+                            target["result"] = "WIN"
+                            target["active"] = False
                 else: # SELL
-                    if low < mfe_price: mfe_price = low  # for sell, lower is better
-                    if high > mae_price: mae_price = high # for sell, higher is worse
+                    if low < mfe_price: mfe_price = low
+                    if high > mae_price: mae_price = high
                     
-                    if high >= sl:
-                        exit_price = sl
-                        exit_time = m1_row['time']
-                        result = "LOSS"
-                        break
-                    if low <= tp:
-                        exit_price = tp
-                        exit_time = m1_row['time']
-                        result = "WIN"
-                        break
+                    for rrr, target in targets.items():
+                        if not target["active"]: continue
+                        if high >= sl:
+                            target["exit_time"] = str(m1_row['time'])
+                            target["result"] = "LOSS"
+                            target["active"] = False
+                        elif low <= target["tp"]:
+                            target["exit_time"] = str(m1_row['time'])
+                            target["result"] = "WIN"
+                            target["active"] = False
+                            
+                if all(not t["active"] for t in targets.values()):
+                    break
             
-            if exit_price is None:
-                # Timed out (didn't hit TP/SL in 24 hours)
+            # Format targets for JSON
+            json_targets = {}
+            for rrr, target in targets.items():
+                if target["result"]:
+                    json_targets[rrr] = {
+                        "result": target["result"],
+                        "exit_time": target["exit_time"]
+                    }
+            
+            if not json_targets:
                 continue
                 
             # Calculate MFE/MAE in Pips/Points absolute difference
@@ -174,12 +197,10 @@ def run_deep_simulation():
                 "pair": symbol,
                 "direction": direction,
                 "entry_time": str(entry_time),
-                "exit_time": str(exit_time),
-                "duration_minutes": (exit_time - entry_time).total_seconds() / 60.0,
+                "targets": json_targets,
                 "probability": probability,
-                "result": result,
-                "mfe_pct": float(mfe_diff),  # Max profit % before reversing
-                "mae_pct": float(mae_diff),  # Max drawdown % before winning
+                "mfe_pct": float(mfe_diff),
+                "mae_pct": float(mae_diff),
                 "rsi": float(row['rsi']),
                 "bb_width": float(row['bb_width']),
                 "dist_sma20": float(row['dist_sma20'])
