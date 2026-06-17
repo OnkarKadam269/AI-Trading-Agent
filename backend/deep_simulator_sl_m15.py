@@ -106,7 +106,7 @@ def run_deep_simulation():
         
         for index, row in trade_signals.iterrows():
             entry_price = float(row['close'])
-            entry_time = index
+            entry_time = index + timedelta(minutes=15) # Fixed: Shift execution to perfectly after candle close
             probability = float(row['probability'])
             direction = "BUY" if probability > 0.60 else "SELL"
             
