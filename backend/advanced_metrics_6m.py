@@ -104,17 +104,18 @@ def run_metrics():
         print(f"=======================================================")
 
     unfiltered_01, filtered_01 = extract_trades("Fixed_0.1%")
-    
     calculate_stats(filtered_01, "WITHOUT CONCURRENT EXECUTION (Filtered 1 Per Pair)", "Fixed_0.1%")
     calculate_stats(unfiltered_01, "WITH CONCURRENT EXECUTION (Unfiltered Signals)", "Fixed_0.1%")
+    
+    unfiltered_02, filtered_02 = extract_trades("Fixed_0.2%")
+    calculate_stats(filtered_02, "WITHOUT CONCURRENT EXECUTION (Filtered 1 Per Pair)", "Fixed_0.2%")
+    calculate_stats(unfiltered_02, "WITH CONCURRENT EXECUTION (Unfiltered Signals)", "Fixed_0.2%")
     
     # Pair-Wise Analysis
     print("\n\n=======================================================")
     print(" PAIR-WISE STOP LOSS OPTIMIZATION MATRIX")
     print(" (Without Concurrent Execution - Live Agent Settings)")
     print("=======================================================")
-    
-    _, filtered_02 = extract_trades("Fixed_0.2%")
     
     def get_pair_stats(trade_list, pair_name):
         pair_trades = [t for t in trade_list if t['pair'] == pair_name]
