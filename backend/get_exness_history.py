@@ -1,12 +1,33 @@
 import MetaTrader5 as mt5
 import pandas as pd
 from datetime import datetime, timedelta
+import psutil
 
 def get_real_exness_history():
-    print("Connecting to MetaTrader 5...")
-    if not mt5.initialize():
-        print(f"MT5 initialization failed: {mt5.last_error()}")
-        return
+    print("Searching for the MT5Trial14 terminal...")
+    
+    # Find all running terminal64.exe processes
+    terminal_paths = []
+    for p in psutil.process_iter(['name', 'exe']):
+        if p.info['name'] == 'terminal64.exe' and p.info['exe']:
+            terminal_paths.append(p.info['exe'])
+            
+    connected = False
+    for path in terminal_paths:
+        if mt5.initialize(path=path):
+            account_info = mt5.account_info()
+            if account_info is not None and account_info.login == 415869203: # Trial 14 login
+                print(f"Successfully connected to MT5Trial14 Terminal at {path}")
+                connected = True
+                break
+            mt5.shutdown()
+            
+    if not connected:
+        print("Could not find the running MT5 terminal for Account 415869203.")
+        print("Will fallback to default...")
+        if not mt5.initialize():
+            print(f"MT5 initialization failed: {mt5.last_error()}")
+            return
 
     account_info = mt5.account_info()
     if account_info is not None:
