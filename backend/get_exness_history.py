@@ -8,13 +8,18 @@ def get_real_exness_history():
         print(f"MT5 initialization failed: {mt5.last_error()}")
         return
 
+    account_info = mt5.account_info()
+    if account_info is not None:
+        print(f"\nConnected to Account: {account_info.login} (Server: {account_info.server})")
+        print(f"Current Balance: ${account_info.balance:.2f} | Equity: ${account_info.equity:.2f}")
+
     # Get history for the last 14 days
     date_to = datetime.now() + timedelta(days=1)
     date_from = date_to - timedelta(days=14)
     
     deals = mt5.history_deals_get(date_from, date_to)
-    if deals is None:
-        print(f"Failed to get deals history: {mt5.last_error()}")
+    if deals is None or len(deals) == 0:
+        print(f"No deals history found on this account: {mt5.last_error()}")
         mt5.shutdown()
         return
 
@@ -24,18 +29,16 @@ def get_real_exness_history():
     # Format time
     df['time'] = pd.to_datetime(df['time'], unit='s')
     
-    # MAGIC NUMBER 234000 is Agent 1
-    # MAGIC NUMBER 999000 is Kronos Hyper (Agent 2)
-    # Exclude deposits/withdrawals (deal type 2, etc.)
-    df_agent = df[(df['magic'] == 234000) & (df['type'] <= 1)].copy()
+    # Exclude deposits/withdrawals (deal type 2, etc.) and don't filter by magic
+    df_agent = df[df['type'] <= 1].copy()
     
     if df_agent.empty:
-        print("\nNo trades found in broker history for Agent 1 (Magic 234000).")
+        print("\nNo actual trades found in broker history for this account.")
         mt5.shutdown()
         return
 
     print("\n=====================================================================================================================")
-    print("                                      REAL EXNESS BROKER HISTORY (AGENT 1)")
+    print("                                      REAL EXNESS BROKER HISTORY (ALL TRADES)")
     print("=====================================================================================================================")
     print(f"{'Time':<22} | {'Ticket':<10} | {'Pair':<8} | {'Type':<6} | {'Lots':<5} | {'Price':<10} | {'Commission':<10} | {'Swap':<8} | {'Profit'}")
     print("---------------------------------------------------------------------------------------------------------------------")
