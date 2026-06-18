@@ -33,19 +33,24 @@ def generate_report():
     # If exit_price is populated, we can calculate actual outcome.
     # For now, let's look at raw trades.
     
-    print(f"Total Live Trades Executed: {total_trades}")
-    print("\n--- Trade History ---")
+    print("=====================================================================================================================")
+    print(f"{'Time':<22} | {'Pair':<8} | {'Type':<4} | {'Lots':<5} | {'Entry':<10} | {'Exit':<10} | {'SL':<10} | {'TP':<10} | {'PnL'}")
+    print("---------------------------------------------------------------------------------------------------------------------")
     
     for index, row in df.iterrows():
-        open_time = row['open_time']
+        open_time = str(row['open_time'])[:19] # Truncate microseconds
         symbol = row['symbol']
         direction = row['direction']
-        entry = row['entry_price']
-        sl = row['stop_loss']
+        entry = f"{row['entry_price']:.5f}" if pd.notnull(row['entry_price']) else "-"
+        exit_p = f"{row['exit_price']:.5f}" if pd.notnull(row['exit_price']) else "OPEN"
+        sl = f"{row['stop_loss']:.5f}" if pd.notnull(row['stop_loss']) else "-"
+        tp = f"{row['take_profit_1']:.5f}" if 'take_profit_1' in row and pd.notnull(row['take_profit_1']) else "-"
+        lots = f"{row['lot_size']:.2f}" if 'lot_size' in row and pd.notnull(row['lot_size']) else "-"
+        pnl = f"${row['pnl']:.2f}" if 'pnl' in row and pd.notnull(row['pnl']) else "-"
         
-        print(f"[{open_time}] {direction} {symbol} | Entry: {entry} | SL: {sl}")
+        print(f"{open_time:<22} | {symbol:<8} | {direction:<4} | {lots:<5} | {entry:<10} | {exit_p:<10} | {sl:<10} | {tp:<10} | {pnl}")
 
-    print("=======================================================")
+    print("=====================================================================================================================")
     print("This data is pulled directly from your LIVE MT5 Exness Account.")
 
 if __name__ == "__main__":
