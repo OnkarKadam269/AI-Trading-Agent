@@ -16,14 +16,14 @@ def get_real_exness_history():
     for path in terminal_paths:
         if mt5.initialize(path=path):
             account_info = mt5.account_info()
-            if account_info is not None and account_info.login == 415869203: # Trial 14 login
-                print(f"Successfully connected to MT5Trial14 Terminal at {path}")
+            if account_info is not None and account_info.login == 463535802: # Trial 17 (Hyper) login
+                print(f"Successfully connected to MT5Trial17 (Hyper Agent) Terminal at {path}")
                 connected = True
                 break
             mt5.shutdown()
             
     if not connected:
-        print("Could not find the running MT5 terminal for Account 415869203.")
+        print("Could not find the running MT5 terminal for Account 463535802.")
         print("Will fallback to default...")
         if not mt5.initialize():
             print(f"MT5 initialization failed: {mt5.last_error()}")
@@ -94,7 +94,7 @@ def get_real_exness_history():
     
     net_pnl = total_profit + total_commission + total_swap
     
-    print("\n[EXACT ACCOUNT METRICS - AGENT 1]")
+    print("\n[EXACT ACCOUNT METRICS - AGENT 2 (HYPER)]")
     print(f"Gross Trade Profit: ${total_profit:.2f}")
     print(f"Total Commissions Paid: ${total_commission:.2f}")
     print(f"Total Swap/Overnight Fees: ${total_swap:.2f}")
