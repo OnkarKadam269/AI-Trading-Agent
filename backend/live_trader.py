@@ -172,29 +172,39 @@ def place_trade(symbol, prediction, probability, current_price, features_dict):
         logging.info(f"Already in a trade for {symbol}. Waiting for it to close.")
         return
 
+    tick = mt5.symbol_info_tick(symbol)
+    if tick is None:
+        log_error(f"Failed to get tick for {symbol}")
+        return
+        
+    ask = tick.ask
+    bid = tick.bid
+
     stop_loss_pct = 0.002 # 0.2%
     take_profit_pct = 0.003 # 0.3% (1:1.5 RRR)
     
     if prediction == 1:
-        sl = current_price * (1 - stop_loss_pct)
-        tp = current_price * (1 + take_profit_pct)
+        order_price = ask
+        sl = order_price * (1 - stop_loss_pct)
+        tp = order_price * (1 + take_profit_pct)
         order_type = mt5.ORDER_TYPE_BUY
         logging.info(f"[{symbol}] KRONOS SAYS BUY! (Prob: {probability:.2f})")
     else:
-        sl = current_price * (1 + stop_loss_pct)
-        tp = current_price * (1 - take_profit_pct)
+        order_price = bid
+        sl = order_price * (1 + stop_loss_pct)
+        tp = order_price * (1 - take_profit_pct)
         order_type = mt5.ORDER_TYPE_SELL
         logging.info(f"[{symbol}] KRONOS SAYS SELL! (Prob: {1-probability:.2f})")
 
     # Dynamic Volatility-Adjusted Lot Size
-    calculated_lot_size = calculate_position_size(symbol, current_price, sl)
+    calculated_lot_size = calculate_position_size(symbol, order_price, sl)
 
     request = {
         "action": mt5.TRADE_ACTION_DEAL,
         "symbol": symbol,
         "volume": calculated_lot_size,
         "type": order_type,
-        "price": mt5.symbol_info_tick(symbol).ask if order_type == mt5.ORDER_TYPE_BUY else mt5.symbol_info_tick(symbol).bid,
+        "price": order_price,
         "sl": sl,
         "tp": tp,
         "deviation": 20,
@@ -324,15 +334,24 @@ def run_agent():
             time.sleep(3600)
             continue
             
-        logging.info(f"Scanning markets at {current_time.strftime('%H:%M:%S')}...")
+        ist_now = utc_now + timedelta(hours=5, minutes=30)
+        is_rollover = (2 <= ist_now.hour < 5)
         
-        for pair in PAIRS:
+        if is_rollover:
+            logging.info(f"High Spread Rollover Period ({ist_now.strftime('%H:%M')} IST). Skipping market scan.")
+            pairs_to_scan = []
+        else:
+            logging.info(f"Scanning markets at {current_time.strftime('%H:%M:%S')}...")
+            pairs_to_scan = PAIRS
+        
+        signals = []
+        for pair in pairs_to_scan:
             df = get_data(pair)
             if df is None: continue
             df = calculate_features(df)
             if df is None or len(df) == 0: continue
             
-            latest_candle = df.iloc[-2] 
+            latest_candle = df.iloc[-1] 
             features_dict = {
                 'open': float(latest_candle['open']), 'high': float(latest_candle['high']),
                 'low': float(latest_candle['low']), 'close': float(latest_candle['close']),
@@ -344,12 +363,23 @@ def run_agent():
             
             if prediction is not None:
                 if probability > 0.60:
-                    place_trade(pair, 1, probability, float(latest_candle['close']), features_dict)
+                    signals.append((pair, 1, probability, float(latest_candle['close']), features_dict))
                 elif probability < 0.40:
-                    place_trade(pair, 0, probability, float(latest_candle['close']), features_dict)
+                    signals.append((pair, 0, probability, float(latest_candle['close']), features_dict))
                 else:
                     logging.info(f"[{pair}] Market is too noisy (Prob: {probability:.2f}). Sitting out.")
             
+        if signals:
+            logging.info(f"Pre-computed {len(signals)} trade signals! Waiting for the exact 00.00 clock strike...")
+            target_time = current_time.replace(minute=0, second=0, microsecond=0) + timedelta(minutes=((current_time.minute // 15) + 1) * 15)
+            # Sleep in tiny bursts until the exact second hits 00
+            while datetime.now() < target_time:
+                time.sleep(0.01)
+                
+            logging.info(f"CLOCK STRUCK 00! FIRING {len(signals)} TRADES CONCURRENTLY!")
+            for sig in signals:
+                place_trade(sig[0], sig[1], sig[2], sig[3], sig[4])
+                
         # Check if 4 hours have passed for the report
         state = load_state()
         if (datetime.now().timestamp() - state.get("last_report_time", 0.0)) >= 4 * 3600:
@@ -358,16 +388,16 @@ def run_agent():
         # Update Memory System with any closed trades
         check_closed_trades()
 
-        # Calculate seconds until the exact next 15-minute candle closes
+        # Calculate seconds to wake up EXACTLY 2 seconds before the next 15-minute candle closes
         now = datetime.now()
         next_minute = ((now.minute // 15) + 1) * 15
-        next_run = now.replace(minute=0, second=2, microsecond=0) + timedelta(minutes=next_minute)
+        next_run = now.replace(minute=0, second=0, microsecond=0) + timedelta(minutes=next_minute) - timedelta(seconds=2)
         sleep_seconds = (next_run - now).total_seconds()
         
         if sleep_seconds <= 0:
-            sleep_seconds = 900
+            sleep_seconds = 898 # 15 minutes minus 2 seconds
             
-        logging.info(f"Sleeping for {int(sleep_seconds)} seconds until exact candle close at {next_run.strftime('%H:%M:%S')}...")
+        logging.info(f"Sleeping for {int(sleep_seconds)} seconds... Waking up at {next_run.strftime('%H:%M:%S')} to pre-compute.")
         time.sleep(sleep_seconds)
 
 if __name__ == "__main__":
