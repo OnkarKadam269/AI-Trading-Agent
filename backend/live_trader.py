@@ -180,8 +180,12 @@ def place_trade(symbol, prediction, probability, current_price, features_dict):
     ask = tick.ask
     bid = tick.bid
 
-    stop_loss_pct = 0.002 # 0.2%
-    take_profit_pct = 0.003 # 0.3% (1:1.5 RRR)
+    if symbol == 'XAUUSDm':
+        stop_loss_pct = 0.002 # 0.2%
+        take_profit_pct = 0.003 # 0.3% (1:1.5 RRR)
+    else:
+        stop_loss_pct = 0.001 # 0.1%
+        take_profit_pct = 0.0015 # 0.15% (1:1.5 RRR)
     
     if prediction == 1:
         order_price = ask
