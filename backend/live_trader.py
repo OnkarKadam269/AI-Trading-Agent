@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 import pickle
 import sys
 import json
+import news_filter
 sys.path.append(os.path.dirname(__file__))
 from data.database import SessionLocal, Trade
 
@@ -366,6 +367,14 @@ def run_agent():
             prediction, probability = ask_kronos_brain(features_dict)
             
             if prediction is not None:
+                if probability > 0.60 or probability < 0.40:
+                    safe, reason = news_filter.is_safe_to_trade(pair, buffer_minutes=15)
+                    if not safe:
+                        msg = f"⚠️ [{pair}] TRADE BLOCKED by News Filter: {reason}"
+                        logging.warning(msg)
+                        send_telegram(msg)
+                        continue
+                        
                 if probability > 0.60:
                     signals.append((pair, 1, probability, float(latest_candle['close']), features_dict))
                 elif probability < 0.40:
