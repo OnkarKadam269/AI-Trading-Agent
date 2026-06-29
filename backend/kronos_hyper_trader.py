@@ -9,11 +9,15 @@ import os
 from datetime import datetime, timedelta
 import warnings
 from dotenv import load_dotenv
-import pickle
 import sys
 import json
+import torch
+import news_filter
+
 sys.path.append(os.path.dirname(__file__))
 from data.database import SessionLocal, Trade
+sys.path.append(os.path.join(os.path.dirname(__file__), "kronos_real"))
+from model import Kronos, KronosTokenizer, KronosPredictor
 
 load_dotenv()
 
@@ -29,18 +33,22 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 if not RUNPOD_ENDPOINT_ID or not RUNPOD_API_KEY:
     raise ValueError("Missing RUNPOD credentials in .env")
 
-PAIRS = ['GBPUSDm', 'XAUUSDm', 'USDJPYm']
-TIMEFRAME = mt5.TIMEFRAME_M15
+PAIRS = ['XAUUSDm']
+TIMEFRAME = mt5.TIMEFRAME_M30
 RISK_PER_TRADE_PCT = 0.002
 
-# Load Local AI Model
-model_path = os.path.join(os.path.dirname(__file__), 'kronos_model.pkl')
+# Load True HuggingFace AI Model Globally
 try:
-    with open(model_path, 'rb') as f:
-        kronos_model = pickle.load(f)
-    logging.info("Kronos AI Model loaded locally successfully!")
+    logging.info("Loading true PyTorch Kronos Model (24M Parameters)...")
+    tokenizer = KronosTokenizer.from_pretrained("NeoQuasar/Kronos-Tokenizer-base")
+    model = Kronos.from_pretrained("NeoQuasar/Kronos-small")
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model = model.to(device)
+    tokenizer = tokenizer.to(device)
+    kronos_predictor = KronosPredictor(model, tokenizer, max_context=512)
+    logging.info(f"Kronos AI Model loaded successfully on {device.upper()}!")
 except Exception as e:
-    raise ValueError(f"Failed to load AI model: {e}")
+    raise ValueError(f"Failed to load HuggingFace AI model: {e}")
 
 # Persistent System Tracking
 STATE_FILE = os.path.join(os.path.dirname(__file__), "hyper_state.json")
@@ -83,7 +91,7 @@ def init_mt5():
     logging.info("MT5 Initialized Successfully")
     return True
 
-def get_data(symbol, n_candles=100):
+def get_data(symbol, n_candles=300):
     if not mt5.symbol_select(symbol, True):
         log_error(f"Failed to select {symbol} in MT5")
         return None
@@ -93,6 +101,9 @@ def get_data(symbol, n_candles=100):
         return None
     df = pd.DataFrame(rates)
     df['time'] = pd.to_datetime(df['time'], unit='s')
+    df = df.rename(columns={'tick_volume': 'volume'})
+    if 'amount' not in df.columns and 'volume' in df.columns and 'close' in df.columns:
+        df['amount'] = df['volume'] * df['close']
     df.set_index('time', inplace=True)
     return df
 
@@ -103,24 +114,59 @@ def calculate_features(df):
         df['bb_width'] = bb.bollinger_wband()
         sma20 = ta.trend.SMAIndicator(df['close'], window=20).sma_indicator()
         df['dist_sma20'] = (df['close'] - sma20) / sma20 * 100
+        
+        # New Macro Features
+        df['tr0'] = df['high'] - df['low']
+        df['tr1'] = abs(df['high'] - df['close'].shift())
+        df['tr2'] = abs(df['low'] - df['close'].shift())
+        df['tr'] = df[['tr0', 'tr1', 'tr2']].max(axis=1)
+        df['atr'] = df['tr'].rolling(14).mean()
+        
+        df['ema_200'] = df['close'].ewm(span=200, adjust=False).mean()
+        
+        # ADX Calculation
+        period = 14
+        df['up_move'] = df['high'] - df['high'].shift(1)
+        df['down_move'] = df['low'].shift(1) - df['low']
+        df['+dm'] = np.where((df['up_move'] > df['down_move']) & (df['up_move'] > 0), df['up_move'], 0)
+        df['-dm'] = np.where((df['down_move'] > df['up_move']) & (df['down_move'] > 0), df['down_move'], 0)
+        df['+di'] = 100 * (df['+dm'].rolling(period).mean() / df['atr'])
+        df['-di'] = 100 * (df['-dm'].rolling(period).mean() / df['atr'])
+        df['dx'] = 100 * abs(df['+di'] - df['-di']) / (df['+di'] + df['-di'])
+        df['adx'] = df['dx'].rolling(period).mean()
+        
         df.dropna(inplace=True)
         return df
     except Exception as e:
         log_error(f"Error calculating features: {e}")
         return None
 
-def ask_kronos_brain(features_dict):
+def ask_kronos_brain(df_slice):
     try:
-        df = pd.DataFrame([features_dict])
-        features = ['open', 'high', 'low', 'close', 'tick_volume', 'rsi', 'bb_width', 'dist_sma20']
-        X = df[features]
+        x_df = df_slice[['open', 'high', 'low', 'close', 'volume', 'amount']].copy()
+        x_timestamp = df_slice.index.copy()
         
-        prediction = int(kronos_model.predict(X)[0])
-        probability = float(kronos_model.predict_proba(X)[0][1])
+        last_time = x_timestamp[-1]
+        future_time = last_time + timedelta(minutes=30)
+        y_timestamp = pd.Series([future_time])
         
-        return prediction, probability
+        pred_df_list = kronos_predictor.predict_batch(
+            df_list=[x_df],
+            x_timestamp_list=[x_timestamp],
+            y_timestamp_list=[y_timestamp],
+            pred_len=1,
+            T=1.0,
+            top_p=0.9,
+            sample_count=1,
+            verbose=False
+        )
+        
+        pred_close = pred_df_list[0]['close'].iloc[-1]
+        current_close = x_df['close'].iloc[-1]
+        return pred_close, current_close
+        
     except Exception as e:
-        log_error(f"Local AI Error: {e}")
+        log_error(f"True AI Error: {e}")
         return None, None
 
 def calculate_position_size(symbol, current_price, sl_price):
@@ -128,7 +174,7 @@ def calculate_position_size(symbol, current_price, sl_price):
         account = mt5.account_info()
         if account is None:
             log_error("Failed to fetch account info for position sizing")
-            return 0.01 # Fallback
+            return 0.01 
             
         equity = account.equity
         risk_amount = equity * RISK_PER_TRADE_PCT
@@ -162,7 +208,7 @@ def calculate_position_size(symbol, current_price, sl_price):
         log_error(f"Error calculating position size: {e}")
         return 0.01
 
-def place_trade(symbol, prediction, probability, current_price, features_dict):
+def place_trade(symbol, prediction, pred_close, current_price, gap, atr):
     tick = mt5.symbol_info_tick(symbol)
     if tick is None:
         log_error(f"Failed to get tick for {symbol}")
@@ -170,26 +216,21 @@ def place_trade(symbol, prediction, probability, current_price, features_dict):
         
     ask = tick.ask
     bid = tick.bid
-
-    if symbol == 'XAUUSDm':
-        stop_loss_pct = 0.002 # 0.2%
-        take_profit_pct = 0.003 # 0.3% (1:1.5 RRR)
-    else:
-        stop_loss_pct = 0.001 # 0.1%
-        take_profit_pct = 0.0015 # 0.15% (1:1.5 RRR)
     
+    sl_dist = 1.5 * atr
+
     if prediction == 1:
         order_price = ask
-        sl = order_price * (1 - stop_loss_pct)
-        tp = order_price * (1 + take_profit_pct)
+        sl = order_price - sl_dist
+        tp = 0.0 # Uncapped
         order_type = mt5.ORDER_TYPE_BUY
-        logging.info(f"[{symbol}] KRONOS SAYS BUY! (Prob: {probability:.2f})")
+        logging.info(f"[{symbol}] KRONOS SAYS BUY! (Pred: {pred_close:.2f} | Gap: {gap:.2f})")
     else:
         order_price = bid
-        sl = order_price * (1 + stop_loss_pct)
-        tp = order_price * (1 - take_profit_pct)
+        sl = order_price + sl_dist
+        tp = 0.0 # Uncapped
         order_type = mt5.ORDER_TYPE_SELL
-        logging.info(f"[{symbol}] KRONOS SAYS SELL! (Prob: {1-probability:.2f})")
+        logging.info(f"[{symbol}] KRONOS SAYS SELL! (Pred: {pred_close:.2f} | Gap: {gap:.2f})")
 
     # Dynamic Volatility-Adjusted Lot Size
     calculated_lot_size = calculate_position_size(symbol, order_price, sl)
@@ -229,8 +270,8 @@ def place_trade(symbol, prediction, probability, current_price, features_dict):
                 take_profit_1=tp,
                 take_profit_2=tp,
                 lot_size=calculated_lot_size,
-                confidence=probability,
-                reasoning=features_dict
+                confidence=float(gap),
+                reasoning=f"Pred: {pred_close:.2f}, Gap: {gap:.2f}, ATR: {atr:.2f}"
             )
             db.add(new_trade)
             db.commit()
@@ -239,20 +280,66 @@ def place_trade(symbol, prediction, probability, current_price, features_dict):
         except Exception as e:
             log_error(f"Failed to save trade to DB: {e}")
 
-        msg = f"🔥 <b>KRONOS HYPER EXECUTED CONCURRENT TRADE</b>\n\n<b>Pair:</b> {symbol}\n<b>Action:</b> {'BUY' if prediction == 1 else 'SELL'}\n<b>Confidence:</b> {probability:.2f}\n<b>Price:</b> {current_price}\n<b>TP/SL:</b> Secured on Broker Server"
+        msg = f"🔥 <b>KRONOS HYPER EXECUTED 30M HYBRID TRADE</b>\n\n<b>Pair:</b> {symbol}\n<b>Action:</b> {'BUY' if prediction == 1 else 'SELL'}\n<b>Pred Close:</b> {pred_close:.2f}\n<b>Price:</b> {current_price}\n<b>TP/SL:</b> Uncapped TP / 1.5 ATR Trailing"
         send_telegram(msg)
         logging.info(f"Order SUCCESS for {symbol}! Ticket: {result.order}")
+
+def manage_trailing_stops():
+    try:
+        positions = mt5.positions_get(symbol="XAUUSDm")
+        if positions is None or len(positions) == 0:
+            return
+            
+        df = get_data("XAUUSDm", n_candles=100)
+        if df is None: return
+        df = calculate_features(df)
+        if df is None: return
+        
+        latest_candle = df.iloc[-1]
+        atr = float(latest_candle['atr'])
+        current_close = float(latest_candle['close'])
+        
+        for pos in positions:
+            ticket = pos.ticket
+            pos_type = pos.type
+            current_sl = pos.sl
+            
+            if pos_type == mt5.ORDER_TYPE_BUY:
+                new_sl = current_close - (1.5 * atr)
+                if new_sl > current_sl and (current_close - new_sl) > 0:
+                    request = {
+                        "action": mt5.TRADE_ACTION_SLTP,
+                        "position": ticket,
+                        "sl": new_sl,
+                        "tp": pos.tp
+                    }
+                    res = mt5.order_send(request)
+                    if res.retcode == mt5.TRADE_RETCODE_DONE:
+                        logging.info(f"Trailing SL updated for BUY position {ticket} to {new_sl}")
+                        
+            elif pos_type == mt5.ORDER_TYPE_SELL:
+                new_sl = current_close + (1.5 * atr)
+                if (current_sl == 0.0 or new_sl < current_sl) and (new_sl - current_close) > 0:
+                    request = {
+                        "action": mt5.TRADE_ACTION_SLTP,
+                        "position": ticket,
+                        "sl": new_sl,
+                        "tp": pos.tp
+                    }
+                    res = mt5.order_send(request)
+                    if res.retcode == mt5.TRADE_RETCODE_DONE:
+                        logging.info(f"Trailing SL updated for SELL position {ticket} to {new_sl}")
+    except Exception as e:
+        log_error(f"Error trailing stops: {e}")
 
 def check_closed_trades():
     try:
         db = SessionLocal()
-        # Find trades that haven't been marked as closed in our DB
         open_trades = db.query(Trade).filter(Trade.exit_price == None).all()
         if not open_trades:
             db.close()
             return
             
-        # Get history from yesterday to tomorrow
         from_date = datetime.now() - timedelta(days=2)
         to_date = datetime.now() + timedelta(days=1)
         history = mt5.history_deals_get(from_date, to_date)
@@ -261,9 +348,7 @@ def check_closed_trades():
             db.close()
             return
             
-        closed_any = False
         for trade in open_trades:
-            # Look for a closing deal for this position
             for deal in history:
                 if deal.position_id == trade.ticket and deal.entry == mt5.DEAL_ENTRY_OUT:
                     trade.exit_price = deal.price
@@ -272,11 +357,8 @@ def check_closed_trades():
                     trade.close_reason = "TP/SL/Manual"
                     db.commit()
                     logging.info(f"Memory System Updated: Trade {trade.ticket} Closed. PnL: ${deal.profit:.2f}")
-                    closed_any = True
                     break
         db.close()
-        
-
     except Exception as e:
         log_error(f"Error checking closed trades: {e}")
 
@@ -294,14 +376,13 @@ def generate_4h_report():
     errors = state.get("errors", [])
     if len(errors) > 0:
         report += f"⚠️ <b>System Breakdowns ({len(errors)}):</b>\n"
-        for err in errors[-5:]: # Only show last 5
+        for err in errors[-5:]:
             report += f"- {err}\n"
     else:
         report += "✅ <b>System Health:</b> 100% Perfect (No Breakdowns)\n"
         
     send_telegram(report)
     
-    # Reset tracking
     state["errors"] = []
     state["trades"] = 0
     state["last_report_time"] = datetime.now().timestamp()
@@ -311,8 +392,8 @@ def run_agent():
     if not init_mt5():
         return
 
-    logging.info(f"KRONOS HYPER AGENT STARTED! (Concurrent Execution ENABLED)")
-    send_telegram("🚀 <b>Kronos HYPER Agent is officially ONLINE!</b>\nConcurrent Multi-Trade Execution Enabled.")
+    logging.info(f"KRONOS HYPER AGENT STARTED! (30M HYBRID ARCHITECTURE)")
+    send_telegram("🚀 <b>Kronos HYPER Agent is officially ONLINE!</b>\nTrading XAUUSD M30 exclusively using the PyTorch Foundation Model + Hybrid Trailing logic.")
     
     state = load_state()
     if state.get("last_report_time", 0.0) == 0.0:
@@ -323,7 +404,6 @@ def run_agent():
         current_time = datetime.now()
         utc_now = datetime.utcnow()
         
-        # Market is globally closed on Saturdays, and most of Sunday (until 21:00 UTC)
         if utc_now.weekday() == 5 or (utc_now.weekday() == 6 and utc_now.hour < 21):
             logging.info("Weekend detected. Markets are closed. Sleeping for 1 hour...")
             time.sleep(3600)
@@ -346,51 +426,73 @@ def run_agent():
             df = calculate_features(df)
             if df is None or len(df) == 0: continue
             
+            if len(df) < 64:
+                logging.info(f"[{pair}] Not enough data (got {len(df)} candles). Needs 64.")
+                continue
+                
+            df_slice = df.iloc[-64:]
+            
             latest_candle = df.iloc[-1] 
-            features_dict = {
-                'open': float(latest_candle['open']), 'high': float(latest_candle['high']),
-                'low': float(latest_candle['low']), 'close': float(latest_candle['close']),
-                'tick_volume': float(latest_candle['tick_volume']), 'rsi': float(latest_candle['rsi']),
-                'bb_width': float(latest_candle['bb_width']), 'dist_sma20': float(latest_candle['dist_sma20'])
-            }
             
-            prediction, probability = ask_kronos_brain(features_dict)
+            adx = float(latest_candle['adx'])
+            ema_200 = float(latest_candle['ema_200'])
+            atr = float(latest_candle['atr'])
+            current_close = float(latest_candle['close'])
             
-            if prediction is not None:
-                if probability > 0.60:
-                    signals.append((pair, 1, probability, float(latest_candle['close']), features_dict))
-                elif probability < 0.40:
-                    signals.append((pair, 0, probability, float(latest_candle['close']), features_dict))
+            pred_close, cur_close = ask_kronos_brain(df_slice)
+            
+            if pred_close is not None:
+                gap = pred_close - current_close
+                
+                if gap > (0.1 * atr) or gap < -(0.1 * atr):
+                    safe, reason = news_filter.is_safe_to_trade(pair, buffer_minutes=15)
+                    if not safe:
+                        msg = f"⚠️ [{pair}] TRADE BLOCKED by News Filter: {reason}"
+                        logging.warning(msg)
+                        send_telegram(msg)
+                        continue
+                        
+                # CONFLUENCE MACRO FILTERS
+                if adx < 20:
+                    logging.info(f"[{pair}] ADX < 20 ({adx:.2f}). Market chopping. Blocked.")
+                    continue
+                    
+                if gap > (0.1 * atr):
+                    if current_close > ema_200:
+                        signals.append((pair, 1, pred_close, current_close, gap, atr))
+                    else:
+                        logging.info(f"[{pair}] BUY predicted (gap {gap:.2f}) but Price < 200 EMA. Blocked.")
+                elif gap < -(0.1 * atr):
+                    if current_close < ema_200:
+                        signals.append((pair, 0, pred_close, current_close, gap, atr))
+                    else:
+                        logging.info(f"[{pair}] SELL predicted (gap {gap:.2f}) but Price > 200 EMA. Blocked.")
                 else:
-                    logging.info(f"[{pair}] Market is too noisy (Prob: {probability:.2f}). Sitting out.")
+                    logging.info(f"[{pair}] Gap too small ({gap:.2f}). Sitting out.")
             
         if signals:
             logging.info(f"Pre-computed {len(signals)} trade signals! Waiting for the exact 00.00 clock strike...")
-            target_time = current_time.replace(minute=0, second=0, microsecond=0) + timedelta(minutes=((current_time.minute // 15) + 1) * 15)
-            # Sleep in tiny bursts until the exact second hits 00
+            target_time = current_time.replace(minute=0, second=0, microsecond=0) + timedelta(minutes=((current_time.minute // 30) + 1) * 30)
             while datetime.now() < target_time:
                 time.sleep(0.01)
                 
             logging.info(f"CLOCK STRUCK 00! FIRING {len(signals)} TRADES CONCURRENTLY!")
             for sig in signals:
-                place_trade(sig[0], sig[1], sig[2], sig[3], sig[4])
+                place_trade(sig[0], sig[1], sig[2], sig[3], sig[4], sig[5])
                 
-        # Check if 4 hours have passed for the report
-        state = load_state()
         if (datetime.now().timestamp() - state.get("last_report_time", 0.0)) >= 4 * 3600:
             generate_4h_report()
             
-        # Update Memory System with any closed trades
         check_closed_trades()
+        manage_trailing_stops()
 
-        # Calculate seconds to wake up EXACTLY 2 seconds before the next 15-minute candle closes
         now = datetime.now()
-        next_minute = ((now.minute // 15) + 1) * 15
+        next_minute = ((now.minute // 30) + 1) * 30
         next_run = now.replace(minute=0, second=0, microsecond=0) + timedelta(minutes=next_minute) - timedelta(seconds=2)
         sleep_seconds = (next_run - now).total_seconds()
         
         if sleep_seconds <= 0:
-            sleep_seconds = 898 # 15 minutes minus 2 seconds
+            sleep_seconds = 1798 # 30 minutes minus 2 seconds
             
         logging.info(f"Sleeping for {int(sleep_seconds)} seconds... Waking up at {next_run.strftime('%H:%M:%S')} to pre-compute.")
         time.sleep(sleep_seconds)
