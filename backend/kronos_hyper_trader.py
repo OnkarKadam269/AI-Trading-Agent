@@ -295,6 +295,9 @@ def manage_trailing_stops():
         current_close = float(latest_candle['close'])
         
         for pos in positions:
+            if pos.magic != 999000:
+                continue
+            
             ticket = pos.ticket
             pos_type = pos.type
             current_sl = pos.sl
