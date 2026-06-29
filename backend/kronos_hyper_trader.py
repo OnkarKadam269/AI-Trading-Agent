@@ -139,9 +139,9 @@ def calculate_features(df):
 def ask_kronos_brain(df_slice):
     try:
         x_df = df_slice[['open', 'high', 'low', 'close', 'volume', 'amount']].copy()
-        x_timestamp = df_slice.index.copy()
+        x_timestamp = pd.Series(df_slice.index.copy())
         
-        last_time = x_timestamp[-1]
+        last_time = x_timestamp.iloc[-1]
         future_time = last_time + timedelta(minutes=30)
         y_timestamp = pd.Series([future_time])
         
