@@ -1,0 +1,857 @@
+
+--- PAGE 1 ---
+Kronos: A Foundation Model for the Language of Financial Markets
+Yu Shi1*, Zongliang Fu2*, Shuo Chen1, Bohan Zhao1, Wei Xu1, Changshui Zhang2, Jian Li1
+1Institute for Interdisciplinary Information Sciences, Tsinghua University
+2Department of Automation, Tsinghua University
+{shi-y23, fzl22, s-chen25, zhaobh23}@mails.tsinghua.edu.cn,
+weixu@tsinghua.edu.cn, zcs@mail.tsinghua.edu.cn, lapordge@gmail.com
+Abstract
+The success of large-scale pre-training paradigm, exemplified
+by Large Language Models (LLMs), has inspired the devel-
+opment of Time Series Foundation Models (TSFMs). How-
+ever, their application to financial candlestick (K-line) data
+remains limited, often underperforming non-pre-trained ar-
+chitectures. Moreover, existing TSFMs often overlook cru-
+cial downstream tasks such as volatility prediction and syn-
+thetic data generation. To address these limitations, we pro-
+pose Kronos, a unified, scalable pre-training framework
+tailored to financial K-line modeling. Kronos introduces a
+specialized tokenizer that discretizes continuous market in-
+formation into token sequences, preserving both price dy-
+namics and trade activity patterns. We pre-train Kronos using
+an autoregressive objective on a massive, multi-market corpus
+of over 12 billion K-line records from 45 global exchanges,
+enabling it to learn nuanced temporal and cross-asset repre-
+sentations. Kronos excels in a zero-shot setting across a di-
+verse set of financial tasks. On benchmark datasets, Kronos
+boosts price series forecasting RankIC by 93% over the lead-
+ing TSFM and 87% over the best non-pre-trained baseline. It
+also achieves a 9% lower MAE in volatility forecasting and a
+22% improvement in generative fidelity for synthetic K-line
+sequences. These results establish Kronos as a robust, ver-
+satile foundation model for end-to-end financial time series
+analysis.
+Code — https://github.com/shiyu-coder/Kronos
+Extended version — https://arxiv.org/abs/2508.02739
+Introduction
+The emergence of Foundation Models (FMs) has initiated
+a paradigm shift across artificial intelligence, reshaping the
+methodologies of representation learning and downstream
+task adaptation. This shift is exemplified by the success of
+Large Language Models (LLMs) for natural language pro-
+cessing (Brown et al. 2020; Achiam et al. 2023), with par-
+allel breakthroughs in computer vision (Radford et al. 2021;
+Kirillov et al. 2023; Yu et al. 2023).
+Inspired by these advances, the FM paradigm has re-
+cently been extended to temporal data, giving rise to Time
+Series Foundation Models (TSFMs) (Garza, Challu, and
+*Equal contribution
+Copyright © 2026, Association for the Advancement of Artificial
+Intelligence (www.aaai.org). All rights reserved.
+Price Forecasting
+(IC)Price Forecasting
+(RankIC)Return Forecasting
+(IC)Return Forecasting (RankIC)
+Volatility Forecasting
+(MAE)
+Volatility Forecasting
+(R2)
+Kline Generation
+(Disc. Score)
+Kline Generation
+(IC)
+Kline Generation
+(RankIC)Investment Simulation
+(AER)Investment Simulation
+(IR)
+Our Models Kronos large Kronos base Kronos small
+Baselines (Best Results)
+Zero-shot Time Series Models
+Full-shot Time Series ModelsEconometric Volatility Models
+Generative Time Series Models0.044 0.020.027
+0.010.07
+0.040.068
+0.040.037
+0.06 0.26
+0.14
+0.30.25
+0.030.00
+0.028-0.01
+0.210.08
+1.61.04Figure 1: Comprehensive performance of Kronos across sev-
+eral quantitative finance tasks. The chart benchmarks our
+Kronos models (blue family) against several categories of
+specialized baselines. A greater distance from the center sig-
+nifies superior performance.
+Mergenthaler-Canseco 2023; Woo et al. 2024; Xiaoming
+et al. 2025). The central aim is to build pre-trained, task-
+agnostic architectures that serve as universal backbones for
+diverse time series analytical tasks—from forecasting and
+anomaly detection to causal inference—thereby substan-
+tially reducing the need for bespoke model design in each
+application domain.
+Within this expanding research landscape, financial mar-
+kets stand out as a critical and challenging application
+area for TSFMs, given their inherent data richness, high-
+frequency observations, and complex, non-stationary tem-
+poral dynamics. At the core of this domain are K-line
+sequences, multivariate time series derived from candle-
+stick charts that record Open, High, Low, and Close
+prices, along with trading Volume and Amount (Turnover)
+over fixed intervals (OHLCV A). These sequences con-
+stitute a highly compact, information-dense “language”
+The Fortieth AAAI Conference on Artificial Intelligence (AAAI-26)
+25366
+--- PAGE 2 ---
+through which market participants interpret price move-
+ments, volatility regimes, liquidity shifts, and collective sen-
+timent (Nison 2001). Consequently, K-line data forms the
+bedrock of numerous algorithmic trading strategies, portfo-
+lio optimization schemes, and risk management systems.
+However, applying general-purpose TSFMs to financial
+K-line data presents significant challenges, due to two prin-
+cipal factors. First, K-line sequences exhibit unique statis-
+tical properties—such as low signal-to-noise ratios, strong
+non-stationarities, and intricate, high-order dependencies
+among OHLCV A attributes (Zhang and Hua 2025; Baidya
+and Lee 2024)—that are often misaligned with the inductive
+biases of generic TSFMs. Second, the financial domain has
+largely been underserved by mainstream TSFM research; fi-
+nancial sequences constitute a minor fraction of pre-training
+corpora for most existing TSFMs (Das et al. 2024; Gao
+et al. 2024; Xiaoming et al. 2025; Goswami et al. 2024)
+, and the spectrum of downstream tasks critical to quanti-
+tative finance—spanning volatility estimation, synthetic se-
+quence generation, and risk management—remains largely
+unaddressed. These factors lead to an important observa-
+tion, which we empirically validate in this work: general-
+purpose TSFMs often underperform specialized, non-pre-
+trained models (e.g., iTransformer (Liu et al. 2023)) on fi-
+nancial tasks and fail to generalize across the broader land-
+scape of quantitative finance.
+To address these shortcomings, we introduce Kronos,
+a unified, scalable pre-training framework designed
+specifically for financial K-line data. Kronos employs a
+specialized tokenizer to discretize continuous, multivariate
+K-line inputs into a sequence of compact tokens, preserving
+critical price–volume interactions. It then undergoes autore-
+gressive pre-training on an expansive, heterogeneous corpus
+of over 12 billion K-line records drawn from over 45 global
+markets and 7 temporal granularities.
+We validate the efficacy of Kronos through comprehen-
+sive experiments across a range of quantitative finance tasks,
+with a high-level summary presented in Figure 1. On the
+core task of price series forecasting, Kronos establishes a
+new state-of-the-art, boosting the RankIC by 93% over the
+leading TSFM and by 87% over the best-performing non-
+pre-trained baseline. Furthermore, it demonstrates strong
+versatility by achieving a 9% lower MAE in volatility fore-
+casting and a 22% improvement in generative fidelity for
+synthetic K-line generation. These findings highlight the
+broad effectiveness of our approach and underscore Kro-
+nos’s potential as a robust foundation model for interpreting
+the complex “language” of financial markets.
+Our main contributions can be summarized as follows:
+• We propose a novel modeling framework for financial K-
+line data that learns hierarchical representations. It fea-
+tures a specialized tokenizer that quantizes each mul-
+tivariate K-line record into structured, dual-component
+(coarse and fine) tokens, coupled with a tailored autore-
+gressive objective that predicts these subtokens sequen-
+tially. This coarse-to-fine prediction scheme allows Kro-
+nos to explicitly model multi-scale market dynamics.
+• We conduct large-scale pre-training for a family of Kro-nos models with varying capacities. This is performed on
+a massive, diverse financial corpus of over 12 billion K-
+line records from over 45 global exchanges, which is fun-
+damental to learning the robust and generalizable market
+representations that underpin the models’ effectiveness.
+• We conduct comprehensive empirical evaluations across
+a set of quantitative finance tasks. Our results show that
+Kronos establishes a new state-of-the-art in price series
+forecasting, significantly outperforming both TSFMs and
+specialized baselines. The model’s versatility is further
+demonstrated by its strong performance across a broader
+spectrum of quantitative tasks, including volatility fore-
+casting and synthetic K-line generation.
+Preliminary
+LetD-dimensional vector xt∈RDdenote the K-line obser-
+vation at discrete time t, comprising Dkey financial indica-
+tors. In this work, we fix the dimension D= 6to represent
+OHLCV A attributes (Open, High, Low, Close prices, trading
+V olume, and Amount). Given a historical sequence x1:T=
+(x1,x2, . . . , xT),our objective is to predict the following H
+observations ˆxT+1:T +H= (ˆxT+1,ˆxT+2, . . . , ˆxT+H).
+Rather than operating on raw continuous inputs, Kronos
+first quantizes each multivariate observation xtinto a dis-
+crete token btvia a learnable codebook C. Consequently,
+the original sequence x1:T= (x 1, . . . , xT)is mapped to
+b1:T= (b 1, . . . , b T).The forecasting task then reduces to
+an autoregressive token-sequence modeling problem:
+p(bT+1:T +H|b1:T) =HY
+h=1p 
+bT+h|b1:T+h−1
+.(1)
+Such a discrete formulation is inherently scalable and nat-
+urally extends to other tasks that can be framed generatively,
+such as synthetic data generation and volatility forecasting.
+Methodology
+Kronos abstracts financial K-line sequences as a discrete
+language and implements this via a two-phase framework
+illustrated in Figure 2: (1) K-line Tokenization and(2) Au-
+toregressive Pre-training. In the first phase, we design a
+specialized Transformer-based tokenizer to quantize a con-
+tinuous, multivariate K-line sequence into a corresponding
+sequence of discrete tokens, via a learnable codebook. Each
+K-line item (OHLCV A) is treated as an individual instance
+and quantized into a discrete token. Each token is composed
+of a coarse-grained subtoken and a fine-grained subtoken.
+This property is enforced via a hierarchical reconstruction
+loss, which explicitly compels the subtokens to model dis-
+tinct levels of information, thereby creating a coarse-to-fine
+informational hierarchy. In the second phase, an autoregres-
+sive decoder-only Transformer is pre-trained on these to-
+kenized sequences, using the standard next-token predic-
+tion objective to sequentially forecast both subtoken levels
+at each future time step conditioned on the given historical
+context. This unified discretize-and-generate paradigm en-
+ables Kronos to construct a high-fidelity, hierarchical repre-
+sentation of market dynamics, providing a robust foundation
+for downstream quantitative analysis.
+25367
+--- PAGE 3 ---
+Figure 2: The two-stage framework of Kronos. (1) Instance-based K-line Tokenization: A Transformer-based autoencoder
+with a dual reconstruction objective quantizes continuous K-line data into a vocabulary of hierarchical discrete tokens, each
+comprising a coarse and a fine subtoken. (2) Autoregressive Pre-training: A decoder-only Transformer is pre-trained to model
+the temporal dynamics by sequentially predicting the hierarchical subtokens for the next time step, conditioned on the past.
+K-line Tokenization
+The first stage of Kronos transforms a continuous, D-
+dimensional K-line sequence x= (x 1, . . . , xT), where xt∈
+RDencodes OHLCV A indicators, into a corresponding se-
+ries of discrete tokens. This is achieved using a Transformer-
+based autoencoder (Figure 3) composed of an encoder Eenc,
+a quantizer Q, and a decoder Edec. Drawing inspiration from
+video quantization methods in generative modeling (Van
+Den Oord, Vinyals et al. 2017; Yu et al. 2023), we adapt
+Binary Spherical Quantization (BSQ) (Zhao, Xiong, and
+Kr¨ahenb ¨uhl 2024), a variant of Look-up Free Quantization
+(LFQ) (Yu et al. 2023), for this task. BSQ quantizes a contin-
+uous latent vector ξtinto a k-bit binary code bt∈ {−1, 1}k
+by projecting it onto a set of learnable hyperplanes. While
+a large number of bits k(e.g., k= 20) is desirable for
+capturing rich financial patterns, it results in an exponen-
+tially large vocabulary of size 2k, which introduces signifi-
+cant challenges for the subsequent autoregressive model in
+terms of computational cost and parameter size. To mitigate
+this, we follow recent work in video quantization and gen-
+eration (Yu et al. 2023; Wang et al. 2025) and factorize the
+k-bit code into nsubspaces. Motivated by the trade-off be-
+tween parameter savings and latency costs, we set n= 2.
+We partition the code into a coarse subtoken bc
+tand a fine
+subtoken bf
+tof equal bit length, kc=kf=k/2, where
+k=kc+kf. The resulting code btis a concatenation of these
+two subtokens: bt=
+bc
+t, bf
+t
+,withbc
+t,bf
+t∈ {−1, 1}k/2.
+This decomposition transforms a single prediction over a
+large vocabulary of size 2kinto two sequential predictions
+over2k/2entries, substantially reducing both computationaland parameter complexity.
+To enforce a coarse-to-fine structure within each token,
+we train the tokenizer with a composite objective that com-
+bines a hierarchical reconstruction loss and a commitment
+loss for BSQ:
+Ltokenizer =Lcoarse +Lfine+λLquant, (2)
+where λis a balancing hyperparameter. The components are
+defined as:
+•Lcoarse =E
+∥x−Edec(bc)∥2
+, which trains the coarse
+subtoken bcto form a low-fidelity reconstruction.
+•Lfine=E
+∥x−Edec(b)∥2
+, which evaluates the high-
+fidelity reconstruction using the complete token b.
+•Lquant is the quantization loss from BSQ (Zhao, Xiong,
+and Kr ¨ahenb ¨uhl 2024) that regularizes the learning pro-
+cess. It penalizes the L2 distance between continuous la-
+tent vectors ξand their binary codes b, aligning the en-
+coder’s outputs with the learned codebook to ensure sta-
+ble training.
+This hierarchical reconstruction objective is central to our
+design. By optimizing Lcoarse, the coarse subtoken bclearns
+to capture the principal structure of the input. Consequently,
+during the optimization of Lfine, the fine-grained subtoken
+bfis guided to encode the residual information required to
+refine the coarse approximation. Prior work has shown that
+a coarse-to-fine decoding order improves generation qual-
+ity (Wang et al. 2025). Instead of identifying and prioritiz-
+ing the decoding of tokens that inherently contain coarse
+information, our approach is designed to explicitly impose
+25368
+--- PAGE 4 ---
+Figure 3: Architecture of the K-line Tokenizer. It employs
+a Transformer-based autoencoder with a Binary Spherical
+Quantization (BSQ) layer.
+this hierarchy into the tokens during quantization. This en-
+sures that the first subtoken consistently represents coarse-
+grained information, establishing the desired conditional de-
+pendency for the subsequent autoregressive modeling stage.
+Hierarchical Autoregressive Modeling
+Following the tokenization stage, the resulting discrete se-
+quences are modeled using a decoder-only Transformer, de-
+noted as Ear, which employs causal-attention to ensure that
+predictions at each time step depend exclusively on histor-
+ical context. The primary objective is to estimate the joint
+distribution over the token sequence b={b1, . . . , b T}. A
+simplified form of Equation 1 can be derived as:
+p(b) =TY
+t=1p(bt|b<t), (3)
+where b<tdenotes all preceding tokens up to time t−1.
+Given the hierarchical token design, in which each token
+is structured as bt= [bc
+t, bf
+t], we further decompose the con-
+ditional probability using the chain rule to explicitly capture
+the inherent coarse-to-fine dependency:
+p(bt|b<t) =p(bc
+t|b<t)·p(bf
+t|b<t, bc
+t). (4)
+This formulation allows the model to first predict the coarse-
+grained subtoken, which serves as a scaffold for subse-
+quently generating the fine-grained residual subtoken. Con-
+sequently, the pre-training objective reduces to maximizing
+the log-likelihood of the observed sequence under this hier-
+archical factorization.
+As depicted in Figure 2 (Right), the autoregressive pro-
+cess begins by constructing a unified input vector for each
+time step. Specifically, at time i, the subtokens bc
+iandbf
+i
+are independently projected into vector representations us-
+ing two distinct embedding layers, resulting in representa-
+tionsec(bc
+i)andef(bf
+i), respectively. These embeddings areLayers dmodel dffHeads V
+ocab. (2k) Params
+Kronos small 8 512 1024
+8 20 24.7M
+Kronos base 12 832 2048 16 20 102.3M
+Kronos large 18 1664 3072 32 20 499.2M
+Table 1: Model configurations for the Kronos family. We
+detail the number of Transformer layers, model dimension
+(dmodel), feed-forward dimension (d ff), number of attention
+heads, vocabulary size, and the total number of parameters.
+then concatenated and linearly projected to produce a fused
+input vector:
+vi=Wfuse([ec(bc
+i);ef(bf
+i)]), (5)
+where [·;·]denotes concatenation, and Wfuseis a learnable
+weight matrix responsible for projecting the combined rep-
+resentation into the model’s latent space.
+The sequence of fused inputs {v1, . . . , vt−1}is then pro-
+cessed by the Transformer Ear, which outputs contextual-
+ized hidden states. The final hidden state from processing
+b<t, denoted as ht, is then used to predict the token bt. This
+hidden state subsequently informs the autoregressive pre-
+dictions of both coarse and fine subtokens at the next step,
+thereby enabling the model to effectively capture multi-scale
+temporal dependencies inherent in the data.
+Coarse Subtoken Prediction. The history vector htis
+projected by a linear head Wcto produce logits for the first
+subtoken’s distribution:
+p(bc
+t|b<t) =softmax(W cht) (6)
+Fine Subtoken Prediction. To model the conditional
+dependency in Equation (4), the context needs to be up-
+dated with the predicted coarse subtoken, ˆbc
+t. During train-
+ing, we use the model’s own prediction from the previ-
+ous step, ˆbc
+t, which is sampled from the predicted distribu-
+tionp(bc
+t|b< t), rather than using the ground-truth subtoken
+(i.e., teacher-forcing). We find that this sampling strategy en-
+hances model robustness by mitigating exposure bias, better
+aligning the training distribution with the auto-regressive na-
+ture of multi-step inference where ground-truth tokens are
+unavailable. We use a cross-attention mechanism where the
+embedding of ˆbc
+tacts as the query, and the history htpro-
+vides the key and value. The result is projected by the second
+headWf:
+hupdate
+t =CrossAttn(q =ec(ˆbc
+t), k=v=ht)
+p(bf
+t|b<t,ˆbc
+t) =softmax(W fhupdate
+t)(7)
+The overall training objective Laris the negative log-
+likelihood of the data, summed over both prediction steps:
+Lar=−Eb∼DTX
+t=1h
+logp(bc
+t|b<t) + log p(bf
+t|b<t,ˆbc
+t)i
+(8)
+where Drepresents the data distribution.
+25369
+--- PAGE 5 ---
+Kronoslarge
+Kronosbase
+Kronossmall
+TimesNetDLinear
+NSTransformerPatchTST TimeMixer FEDformeriTransformerTimeXer
+TimeMOEbase
+TimeMOEsmall
+Chronoslarge
+Chronosbase
+TimesFMChronossmall
+Moiraibase
+Moirailarge
+Momentsmall
+Moiraismall
+Momentlarge
+Momentbase0.000.020.04IC & RankIC ( )
+(a) Price Series Forecasting
+IC
+RankIC
+Kronoslarge
+Kronosbase
+KronossmallDLinear
+NSTransformerPatchTST TimesNet FEDformeriTransformerTimeXerTimeMixerTimeMOEsmall
+TimeMOEbase
+Moiraismall
+Moiraibase
+Momentbase
+Moirailarge
+Momentsmall
+Momentlarge
+TimesFMChronoslarge
+Chronosbase
+Chronossmall0.0000.0250.050IC & RankIC ( )
+(b) Return Forecasting
+IC
+RankIC
+Kronoslarge
+Kronosbase
+KronossmallGARCHARCH
+iTransformerNSTransformerTimesNet PatchTST TimeXerFEDformerDLinearTimeMixer Momentbase
+Chronossmall
+Chronosbase
+Momentsmall
+Chronoslarge
+Momentlarge
+TimeMOEsmall
+TimeMOEbase
+Moirailarge
+Moiraibase
+TimesFM Moiraismall0.000.050.10MAE ( )
+(c) Realized Volatility Forecasting
+Kronoslarge
+Kronosbase
+Kronossmall
+DiffusionTSTimeGAN TimeVAE0.10.20.3Disc.Score ( )
+(d) Synthetic Kline Generation
+Kronoslarge
+Kronosbase
+Kronossmall
+PatchTST TimeXer TimesNetDLinearFEDformer
+NSTransformerTimeMixeriTransformer Momentlarge
+Moirailarge
+TimesFM
+TimeMOEbase
+Chronoslarge0.00.2AER ( )
+(e) Investment Simulation0.00.10.2
+R2 ( )
+MAE
+R2
+0.000.02
+IC & RankIC ( )
+Disc.Score
+IC
+RankIC
+1
+01
+IR ( )
+AER
+IR
+Kronos (Ours) Full-shot Time Series Models Zero-shot Time Series Models Econometric Volatility Models Generative Time Series ModelsFigure 4: Main experimental results across five representative financial tasks. Subfigures (a-c) show forecasting performance
+on price series, returns, and realized volatility. Subfigure (d) displays generative model performance in terms of fidelity and
+usefulness. Subfigure (e) presents the investment simulation backtesting results.
+Model Pre-training
+Dataset To ensure the quality of pre-training, we curate
+a large-scale, high-quality financial K-line dataset from the
+ground up. In contrast to foundation-model research on
+generic time series—where well-curated public datasets are
+readily pooled—comprehensive, high-quality financial data
+remain limited. Our dataset spans over 12 billion observa-
+tions across 7 sampling frequencies, encompassing a broad
+spectrum of asset classes drawn from 45 global exchanges.
+To guarantee data quality, we develop a streamlined data-
+cleaning pipeline tailored to the unique characteristics of
+financial K-line data, which identifies and filters out low-
+quality segments such as those with abnormal price spikes
+or prolonged periods of inactivity.
+Model Training Informed by the scaling laws observed
+in LLMs (Kaplan et al. 2020), we trained three variants of
+Kronos with increasing parameter counts, up to nearly 0.5
+billion, to provide a trade-off between performance and in-
+ference budget. The detailed model configurations are pre-
+sented in Table 1. Considering resource constraints and prac-
+tical deployment scenarios, we limit the maximum context
+length to 512 tokens. Nevertheless, this design remains fully
+compatible with arbitrary forecasting horizons by leverag-
+ing K-line data at varying frequencies; for instance, using
+1-minute data for short-term forecasting and daily data for
+weekly or monthly predictions.Inference At inference time, we generate future token se-
+quences autoregressively, analogous to text generation. The
+stochasticity of this process is controlled via standard tech-
+niques like temperature scaling and top-p (nucleus) sam-
+pling (Holtzman et al. 2019). The probability of sampling
+token ifrom logits zis given by pi∝exp(z i/T), where Tis
+the temperature. For tasks requiring high precision, predic-
+tion accuracy can be enhanced by generating multiple future
+trajectories (i.e., Monte Carlo rollouts) and averaging the de-
+coded continuous values to produce a more stable forecast.
+As demonstrated in our experiments, this approach consis-
+tently improves forecast quality.
+Experiments
+To comprehensively evaluate the capabilities of Kronos as a
+foundation model for financial K-line data, we design a suite
+of experiments spanning 5 representative tasks. These tasks
+are selected to evaluate Kronos’s performance in both pre-
+dictive and generative applications, thereby demonstrating
+its versatility in practical quantitative finance scenarios.
+Experimental Setup
+The experimental tasks span predictive applications (price
+series, return and realized volatility forecasting), generative
+capabilities (synthetic K-line generation), and an investment
+simulation to gauge real-world applicability.
+25370
+--- PAGE 6 ---
+Model Prediction Space
+Training ObjectivePrice Series Forecasting Return Forecasting Volatility Forecasting
+IC(↑)
+RankIC (↑) IC (↑) RankIC (↑) MAE (↓) R2(↑)
+Direct-AR Continuous Mean Squared
+Error (MSE) 0.0212 0.0149 0.0416 0.0399 0.0565 0.1608
+Prob-AR Continuous Negative Log-Likelihood (NLL) 0.0179 0.0102 0.0356 0.0329 0.0464 0.1383
+Kronos-P arallel Discrete Cross-Entrop y 0.0345
+0.0226 0.0529 0.0505 0.0461 0.1784
+Kronos small Discrete Cross-Entropy 0.0431 0.0254 0.0665 0.0622 0.0384 0.2490
+Table 2: Ablation study dissecting the architectural choices of Kronos. We compare our model against variants targeting dif-
+ferent Prediction Spaces (continuous vs. discrete) with corresponding Training Objectives. Direct-AR serves as a standard
+regression baseline. Prob-AR evaluates the benefit of probabilistic modeling in the continuous space. Kronos-Parallel ablates
+our sequential subtoken design by predicting subtokens concurrently. Best results are in bold.
+10
+ 0 1010
+5
+0510Kronos small
+Original
+10
+ 0 1010
+010 Kronos base
+Original
+10
+ 0 1010
+010 Kronos large
+Original
+10
+ 0 1010
+5
+0510 DiffusionTS
+Original
+10
+ 0 1010
+010 TimeVAE
+Original
+10
+ 0 1010
+010 TimeGAN
+Original
+0.0 0.5 1.0
+Data Value0.00.51.01.52.0Data Density EstimateOriginal
+Kronos small
+0.0 0.5 1.0
+Data Value0.00.51.01.52.0
+Original
+Kronos base
+0.0 0.5 1.0
+Data Value0.00.51.01.52.0
+Original
+Kronos large
+0.0 0.5 1.0
+Data Value0123 Original
+DiffusionTS
+0.0 0.5 1.0
+Data Value0.00.51.01.52.0
+Original
+TimeVAE
+0.0 0.5 1.0
+Data Value0.00.51.01.52.0
+Original
+TimeGAN
+Figure 5: Visual comparison of generative models on the dataset of Shanghai Stock Exchange, 15-minute frequency. Top row:
+t-SNE embeddings of original (red) versus synthetic (blue) data. Bottom row: Kernel Density Estimates (KDE) of original
+versus synthetic data.
+For a rigorous comparison, we benchmark Kronos against
+a comprehensive suite of 25 baseline models. These base-
+lines are carefully selected to represent the state-of-the-
+art across four distinct paradigms: non-pre-trained full-
+shot models (e.g., iTransformer (Liu et al. 2023), DLin-
+ear (Zeng et al. 2023)), zero-shot time series founda-
+tion models (e.g., TimeMOE (Xiaoming et al. 2025),
+Chronos (Ansari et al. 2024)), econometric volatility mod-
+els (e.g., GARCH (Bollerslev 1986), classical approaches
+for volatility prediction from econometrics), and genera-
+tive time series models (e.g., DiffusionTS (Yuan and Qiao
+2024)). An overview of our main experimental results is pre-
+sented in Figure 4.
+Main Results
+Prediction Tasks Figure 4(a-c) presents the results for the
+three forecasting tasks. Kronos achieves consistent state-
+of-the-art performance across all of them. In particular, for
+price series forecasting, Kronos achieves a remarkable 93%
+improvement in RankIC compared to the strongest TSFM
+baseline, and an 87% gain over the best non-pre-trained
+model. Furthermore, as the model size scales up, perfor-
+mance on these tasks consistently improves, empirically val-
+idating the scaling laws for time series foundation mod-
+els (Yao et al. 2024).
+Generative Tasks Following established practices (Yoon,
+Jarrett, and Van der Schaar 2019), we evaluate the quality ofsynthetic data from three perspectives: diversity, fidelity, and
+usefulness. To assess diversity—how well generated samples
+cover the real data’s distribution—we use two visual meth-
+ods: projecting original and synthetic data into a 2D space
+using t-SNE, and comparing their distributions via kernel
+density estimation (KDE). As shown in Figure 5, the t-SNE
+plots show that Kronos’s synthetic data better overlaps the
+original data space, and the KDE plots confirm a higher sim-
+ilarity in distributions.
+For quantitative evaluation, we assess fidelity (i.e., data re-
+alism) using the discriminative score, which measures how
+difficult it is for a classifier to distinguish between original
+and synthetic samples. We also evaluate usefulness (the syn-
+thetic data’s effectiveness for training downstream models)
+via the Train-on-Synthetic, Test-on-Real (TSTR) protocol,
+where a forecasting model is trained on synthetic data and
+its resulting IC and RankIC are evaluated on a test set com-
+posed of real data. As shown in Figure 4(d), Kronos achieves
+the best performance in both fidelity andusefulness. This su-
+periority is also enhanced as the model size scales.
+Investment Simulation To validate Kronos’s perfor-
+mance in a realistic investment scenario, we simulate a long-
+only investment strategy on the Chinese A-shares market by
+constructing portfolios with the top-k stocks ranked by each
+model’s predictive signals. As shown in Figure 4(e), Kronos
+outperforms all other baselines, achieving the highest An-
+nualized Excess Return (AER) and Information Ratio (IR).
+25371
+--- PAGE 7 ---
+14 16 18 200.0780.0800.082
+Reconstruction Performance
+MAE ( )
+MSE ( )
+14 16 18 200.0250.0300.0350.040
+Price Series Forecasting
+IC ( )
+RankIC ( )
+14 16 18 20
+Vocabulary Size (2k)0.0500.0550.0600.065
+Return Forecasting
+IC ( )
+RankIC ( )
+14 16 18 20
+Vocabulary Size (2k)0.0400.0420.044
+Realized Volatility Forecasting
+MAE ( )
+R² ( )
+0.0190.0200.0210.0220.0230.024
+0.200.210.220.230.240.25
+Figure 6: Impact of vocabulary size on model performance.
+We plot reconstruction quality and downstream forecasting
+performance as vocabulary size increases.
+This demonstrates that the model can effectively translate its
+superior predictive accuracy into tangible investment gains.
+Ablation Study
+We conduct ablation studies to validate our core design
+choices, focusing on two questions: (Q1) the effectiveness
+of our modeling paradigm compared to other alternatives,
+and (Q2) the impact of vocabulary size.
+Analysis of Modeling Paradigms. To address Q1, we com-
+pare Kronos against variants that differ in their prediction
+spaces and objectives, while maintaining comparable pa-
+rameter counts. (Table 2). We test two continuous-space
+models: Direct-AR (a regression baseline with MSE) and
+Prob-AR. Following established work (Yao et al. 2024),
+Prob-AR uses a Student-t mixture distribution to better
+model heavy-tailed data distributions. The results show that
+our discrete-space models markedly outperform these con-
+tinuous alternatives.We also find that Kronos-Parallel, a
+variant that predicts subtokens concurrently, performs worse
+than our sequential approach, demonstrating the importance
+of modeling subtoken dependencies. These findings validate
+our discrete, sequential modeling framework as a more ef-
+fective approach for this domain.
+Impact of Vocabulary Size. To answer Q2, we investigate
+how vocabulary size affects model performance. As shown
+in Figure 6, increasing the vocabulary size improves both re-
+construction quality and forecasting accuracy. A larger vo-
+cabulary provides a finer-grained representation, reducing
+quantization error. Crucially, this enhanced representational
+precision translates to better predictive outcomes. This find-
+ing aligns with observations in video generation, where for
+quantization techniques like LFQ and BSQ, larger vocabu-
+laries have been shown to lead to improved generation qual-
+ity (Zhao, Xiong, and Kr ¨ahenb ¨uhl 2024; Yu et al. 2023).
+0.010.020.030.040.05
+Best Baseline (IC): 0.0317  
+Best Baseline (RankIC): 0.0138  Price Series Forecasting
+IC
+RankIC
+1 5 10 20
+Number of Inference Samples (N, log scale)0.0400.0450.0500.0550.0600.0650.0700.075
+Best Baseline (IC): 0.0495  Best Baseline (RankIC): 0.0533  Return Forecasting
+IC
+RankICFigure 7: Impact of the number of inference samples (N) on
+forecasting performance.The lines represent the mean per-
+formance over 5 runs with different random seeds, while the
+shaded areas indicate the standard deviation.
+Test-Time Scaling
+A notable advantage of our probabilistic, generative frame-
+work is the ability to enhance predictive accuracy at in-
+ference time without retraining the model. By leveraging
+stochastic sampling, Kronos can generate multiple distinct
+future trajectories from the same context. We investigate the
+effect of ensembling these predictions by averaging the out-
+comes from an increasing number of sampled paths. Fig-
+ure 7 presents the performance on forecasting tasks as a
+function of the number of samples. The results demonstrate
+a consistent improvement in both IC and RankIC as more
+samples are included in the ensemble. Averaging across
+multiple paths mitigates the stochasticity inherent in the
+generation process and reduces prediction variance, yield-
+ing a more robust and stable estimate. This capability offers
+a trade-off, allowing practitioners to balance computational
+cost at inference with desired levels of predictive accuracy.
+Conclusion
+In this work, we introduce Kronos, a foundation model
+specifically designed for financial K-line sequences. Kronos
+employs a novel two-stage framework, where an instance-
+based tokenizer first discretizes continuous market data into
+hierarchical coarse-to-fine tokens, which are then modeled
+by a large autoregressive Transformer. Comprehensive em-
+pirical evaluations demonstrate that Kronos establishes new
+state-of-the-art benchmarks in price series forecasting, as
+well as in other relevant applications such as synthetic K-
+line generation and volatility forecasting, significantly out-
+performing existing TSFMs and other baselines. These re-
+sults position Kronos as a robust and versatile foundation
+for a range of applications in quantitative finance.
+25372
+--- PAGE 8 ---
+References
+Achiam, J.; Adler, S.; Agarwal, S.; Ahmad, L.; Akkaya, I.;
+Aleman, F. L.; Almeida, D.; Altenschmidt, J.; Altman, S.;
+Anadkat, S.; et al. 2023. Gpt-4 technical report. arXiv
+preprint arXiv:2303.08774.
+Ansari, A. F.; Stella, L.; Turkmen, C.; Zhang, X.; Mercado,
+P.; Shen, H.; Shchur, O.; Rangapuram, S. S.; Arango, S. P.;
+Kapoor, S.; et al. 2024. Chronos: Learning the language of
+time series. arXiv preprint arXiv:2403.07815.
+Baidya, R.; and Lee, S.-W. 2024. Addressing the Non-
+Stationarity and Complexity of Time Series Data for Long-
+Term Forecasts. Applied Sciences, 14(11): 4436.
+Bollerslev, T. 1986. Generalized autoregressive conditional
+heteroskedasticity. Journal of econometrics, 31(3): 307–
+327.
+Brown, T.; Mann, B.; Ryder, N.; Subbiah, M.; Kaplan, J. D.;
+Dhariwal, P.; Neelakantan, A.; Shyam, P.; Sastry, G.; Askell,
+A.; et al. 2020. Language models are few-shot learners. Ad-
+vances in neural information processing systems, 33: 1877–
+1901.
+Das, A.; Kong, W.; Sen, R.; and Zhou, Y . 2024. A decoder-
+only foundation model for time-series forecasting. In Forty-
+first International Conference on Machine Learning.
+Gao, S.; Koker, T.; Queen, O.; Hartvigsen, T.; Tsiligkaridis,
+T.; and Zitnik, M. 2024. Units: Building a unified time series
+model. arXiv e-prints, arXiv–2403.
+Garza, A.; Challu, C.; and Mergenthaler-Canseco, M. 2023.
+TimeGPT-1. arXiv preprint arXiv:2310.03589.
+Goswami, M.; Szafer, K.; Choudhry, A.; Cai, Y .; Li, S.; and
+Dubrawski, A. 2024. Moment: A family of open time-series
+foundation models. arXiv preprint arXiv:2402.03885.
+Holtzman, A.; Buys, J.; Du, L.; Forbes, M.; and Choi, Y .
+2019. The curious case of neural text degeneration. arXiv
+preprint arXiv:1904.09751.
+Kaplan, J.; McCandlish, S.; Henighan, T.; Brown, T. B.;
+Chess, B.; Child, R.; Gray, S.; Radford, A.; Wu, J.; and
+Amodei, D. 2020. Scaling laws for neural language mod-
+els.arXiv preprint arXiv:2001.08361.
+Kirillov, A.; Mintun, E.; Ravi, N.; Mao, H.; Rolland, C.;
+Gustafson, L.; Xiao, T.; Whitehead, S.; Berg, A. C.; Lo,
+W.-Y .; et al. 2023. Segment anything. In Proceedings of
+the IEEE/CVF international conference on computer vision,
+4015–4026.
+Liu, Y .; Hu, T.; Zhang, H.; Wu, H.; Wang, S.; Ma, L.;
+and Long, M. 2023. itransformer: Inverted transformers
+are effective for time series forecasting. arXiv preprint
+arXiv:2310.06625.
+Nison, S. 2001. Japanese candlestick charting techniques:
+a contemporary guide to the ancient investment techniques
+of the Far East. Penguin.
+Radford, A.; Kim, J. W.; Hallacy, C.; Ramesh, A.; Goh, G.;
+Agarwal, S.; Sastry, G.; Askell, A.; Mishkin, P.; Clark, J.;
+et al. 2021. Learning transferable visual models from nat-
+ural language supervision. In International conference on
+machine learning, 8748–8763. PmLR.Van Den Oord, A.; Vinyals, O.; et al. 2017. Neural dis-
+crete representation learning. Advances in neural informa-
+tion processing systems, 30.
+Wang, Y .; Lin, Z.; Teng, Y .; Zhu, Y .; Ren, S.; Feng, J.;
+and Liu, X. 2025. Bridging continuous and discrete to-
+kens for autoregressive visual generation. arXiv preprint
+arXiv:2503.16430.
+Woo, G.; Liu, C.; Kumar, A.; Xiong, C.; Savarese, S.; and
+Sahoo, D. 2024. Unified Training of Universal Time Series
+Forecasting Transformers. In International Conference on
+Machine Learning, 53140–53164. PMLR.
+Xiaoming, S.; Shiyu, W.; Yuqi, N.; Dianqi, L.; Zhou, Y .;
+Qingsong, W.; and Jin, M. 2025. Time-MoE: Billion-Scale
+Time Series Foundation Models with Mixture of Experts.
+InICLR 2025: The Thirteenth International Conference
+on Learning Representations. International Conference on
+Learning Representations.
+Yao, Q.; Yang, C.-H. H.; Jiang, R.; Liang, Y .; Jin, M.; and
+Pan, S. 2024. Towards Neural Scaling Laws for Time Series
+Foundation Models. arXiv preprint arXiv:2410.12360.
+Yoon, J.; Jarrett, D.; and Van der Schaar, M. 2019. Time-
+series generative adversarial networks. Advances in neural
+information processing systems, 32.
+Yu, L.; Lezama, J.; Gundavarapu, N. B.; Versari, L.; Sohn,
+K.; Minnen, D.; Cheng, Y .; Birodkar, V .; Gupta, A.; Gu, X.;
+et al. 2023. Language Model Beats Diffusion–Tokenizer is
+Key to Visual Generation. arXiv preprint arXiv:2310.05737.
+Yuan, X.; and Qiao, Y . 2024. Diffusion-ts: Interpretable dif-
+fusion for general time series generation. arXiv preprint
+arXiv:2403.01742.
+Zeng, A.; Chen, M.; Zhang, L.; and Xu, Q. 2023. Are trans-
+formers effective for time series forecasting? In Proceedings
+of the AAAI conference on artificial intelligence, 9, 11121–
+11128.
+Zhang, L.; and Hua, L. 2025. Major Issues in High-
+Frequency Financial Data Analysis: A Survey of Solutions.
+Mathematics, 13(3): 347.
+Zhao, Y .; Xiong, Y .; and Kr ¨ahenb ¨uhl, P. 2024. Image and
+video tokenization with binary spherical quantization. arXiv
+preprint arXiv:2406.07548.
+25373
